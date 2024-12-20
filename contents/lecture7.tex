@@ -1,0 +1,53 @@
+\section{Lecture 7}
+\subsection{Fourier Series for Real Functions}
+Suppose $f: [0,1] \to \mathbb{R}$. Fourier analysis of this function says,
+\begin{align}
+    f(t) = \sum_{n \in \mathbb{Z}} a_n e^{2\pi int} \mid a_n = \left\langle f(t), e^{2\pi int} \right\rangle
+\end{align}
+Since this is a real function, we can establish
+\begin{lemma}
+    For real function $f: [0,1] \to \mathbb{R}$
+    \begin{align}
+        \overline{a_n} = a_{-n} \mid a_n = \left\langle f(t), e^{2\pi int} \right\rangle
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        a_n &= \int_0^1 f(t) \overline{e^{2\pi int}} \dd{t}\\
+        \overline{a_n} &= \overline{\int_0^1 f(t) \overline{e^{2\pi int}} \dd{t}} = \int_0^1 \overline{f(t) \overline{e^{2\pi int}}} \dd{t}\\
+        &= \int_0^1 \overline{f(t)} e^{2\pi int} \dd{t}\\
+        &= \int_0^1 f(t) e^{2\pi int} \dd{t} & f(t) \in \mathbb{R}\\
+        &= \int_0^1 f(t) \overline{e^{-2\pi int}} \dd{t} = \left\langle f(t), e^{-2\pi int} \right\rangle = a_{-n}
+    \end{align*}
+\end{proof}
+\noindent Using Lemma 7.1,
+\begin{align}
+    f(t) &= a_0 + \sum_{n > 0} a_n e^{2\pi int} + a_n e^{-2\pi int}\\
+    &= a_0 + \sum_{n > 0} a_n e^{2\pi int} + a_n \overline{e^{2\pi int}}
+\end{align}
+Then, using the radial complex form
+\begin{align}
+    a_n = r_n \cdot e^{i\theta_n}
+\end{align}
+where $r_n$ is the radius of the complex vector and $\theta_n$ is its angle relative to $\langle 1, 0\rangle$,
+\begin{align}
+    f(t) &= a_0 + \sum r_n \left[ e^{2\pi int + i\theta_n} + e^{2\pi int - i\theta_n} \right] & \text{second term uses $-n$}
+\end{align}
+We are adding a complex number and its conjugate\footnote{$(a + bi) + (a - bi) = 2a$}, so
+\begin{align}
+    \boxed{f(n) = a_0 + \sum_{n=1}^\infty 2r_n \cos\left[ 2\pi nt + \theta_n \right]}
+\end{align}
+proving that all real functions can be composed as the sum of trigonometric functions.
+
+\subsection{Digression on Sound}
+A sound is some function
+\begin{align}
+    f(n) = \sum_n a_n e^{2\pi int}
+\end{align}
+But humans can only hear certain frequencies so the function
+\begin{align}
+    f(n) = \sum_n^{20000} a_n e^{2\pi int}
+\end{align}
+sounds the same. We thus only need 40000 numbers $-20000, -19999, ..., 19999, 20000$ to represent a sound at some time $t$ (in order to use 7.7 we need to cancel the exponential).
+\subsubsection{Sound Compression}
+\texttt{mp3} compression algorithms pick the top $n$ frequencies at a certain time and delete the rest, saving space. On top of this, harmonic analysis can be performed to determine which frequencies are ``cancelled out'' and remove them too, further saving space.

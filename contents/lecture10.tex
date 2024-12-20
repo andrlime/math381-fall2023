@@ -1,0 +1,55 @@
+\section{Lecture 10}
+``I want to go to a lower level''
+\subsection{The Definition of Convergence}
+Let $a_1, a_2, ...$ be some sequence of real numbers, and let $a \in \mathbb{R}$. We say that the sequence $a_n \to a$ if
+\begin{definition}
+    A sequence $a_1, a_2, ...$ converges if for every positive number $\varepsilon > 0$, $\exists N \in \mathbb{N}$ such that for every $n > N$, $\abs{a_n - a} < \varepsilon$.
+\end{definition}
+\noindent Some real analysist's remarks:
+\begin{enumerate}
+    \item This is still mid-level math. What is a sequence? What is a real number? What is minus?
+    \item This is a complicated condition. Prove $\forall \varepsilon$ and $\forall N$
+\end{enumerate}
+
+\begin{lemma}
+    The sequence $a_n := 1/n$ converges to $0$.
+\end{lemma}
+\begin{proof}
+    Given $\varepsilon > 0$, take $N = \ceil{1/\varepsilon} + 1$, we show that the condition in the definition of convergence holds
+    \begin{align}
+        \abs{a_n - a} = \abs{1/n - 0} = 1/n < 1/N < \varepsilon
+    \end{align}
+\end{proof}
+
+\subsection{Back to Fourier Analysis}
+\begin{definition}
+    Let $f_n$ be a sequence of functions, $f \in \mathcal{F}$. We say
+    \begin{enumerate}
+        \item $f_n \to f$ \textbf{pointwise} if for every $x_0$, $f_n(x_0) \to f(x_0)$, i.e., $\forall x_0$ and $\forall \varepsilon$, $\exists N$ such that $\forall n > N$
+        \begin{align}
+            \abs{
+                f_n(x_0) - f(x_0)} \le \varepsilon
+        \end{align}
+        \item $f_n \to f$ \textbf{uniformly} if $\forall \varepsilon$, $\exists N$ such that $\forall x_0$ and $\forall n > N$,
+        \begin{align}
+            \abs{f_n(x_0) - f(x_0)} < \varepsilon
+        \end{align}
+    \end{enumerate}
+\end{definition}
+\begin{lemma}
+    $f_n(x) = x^n$ on $[0,1]$, $f_n(x) \to g(x)$ pointwise where
+    \begin{align}
+        g(x) = \begin{cases}
+            0&0 \le x < 1\\
+            1&x=1
+        \end{cases}
+    \end{align}
+    but $f_n(x) \not\to g(x)$ uniformly.
+\end{lemma}
+\begin{proof}
+    For every $n$, $x^n$ is continuous. So, by the Intermediate Value Theorem, there is some point $a_n < 1$ such that $f_n(a_n) = 1/2$. $\forall n$,
+    \begin{align}
+        \abs{f_n(a_n) - g(a_n)} = \frac{1}{2} \not< \left[ \varepsilon = \frac{1}{2} \right]
+    \end{align}
+    which means for $\varepsilon = \frac{1}{2}$, the definition does not hold.
+\end{proof}

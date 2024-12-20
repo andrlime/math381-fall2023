@@ -1,0 +1,72 @@
+\section{Lecture 6}
+\subsection{Convergence}
+Instead of convergence of points, convergence of functions, which is the reason infinite dimensional vector spaces are important.
+\subsection{Tangent: Triangle Inequality and Cauchy-Schwartz}
+\begin{definition}
+If $V$ is a vector space with an inner product, and $\vb{u}, \vb{v} \in V$, then
+\begin{align}
+    \norm{\vb{u} + \vb{v}} \le \norm{\vb{u}} + \norm{\vb{v}}
+\end{align}
+\end{definition}
+\begin{definition}
+    Cauchy-Schwartz Inequality\footnote{It's quite odd that this was framed as a definition in lecture, but I will leave it as is.}
+    \begin{align}
+        \abs{\langle \vb{u}, \vb{v} \rangle} \le \norm{\vb{u}}\norm{\vb{v}}
+    \end{align}
+    \begin{proof}
+        In the real case,
+        \begin{align}
+            f(t) :=& \norm{\vb{u} + t\vb{v}}^2 = \langle \vb{u} + t\vb{v}, \vb{u} + t\vb{v} \rangle\\
+            =& \norm{\vb{u}}^2 + 2t \langle \vb{u}, \vb{v} \rangle + t^2 \norm{\vb{v}}^2 \ge 0\\
+            \implies & \text{$\Delta \le 0$} & \text{1 sol. or 0 sol.}\\
+            \implies & 4\langle \vb{u}, \vb{v} \rangle ^2 - 4\norm{\vb{u}}^2\norm{\vb{v}}^2 \le 0\\
+            \implies & \langle \vb{u}, \vb{v} \rangle ^2 \le \norm{\vb{u}}^2\norm{\vb{v}}^2
+        \end{align}
+    \end{proof}
+\end{definition}
+
+\subsection{Back to Convergence}
+\begin{definition}
+    Let $V$ be a vector space with an inner product. Let $\vb{v}_1, \vb{v}_2, ...$ be a sequence of vectors. We say
+    \begin{align}
+        &\lim_{n\to\infty} \vb{v}_n = \vb{v}_\infty \impliedby \lim_{n\to\infty} \norm{\vb{v}_n - \vb{v}_\infty} = 0\\
+        &\sum_1^\infty \vb{v}_n = \vb{w} \impliedby \vb{v}_1, \vb{v}_1 + \vb{v}_2, ..., \vb{v}_1 + \vb{v}_2 + ... + \vb{v}_n \to \vb{w}
+    \end{align}
+\end{definition}
+\begin{lemma}
+    If $\vb{v}_n \to \vb{v}_\infty$, then $\norm{\vb{v}_n} \to \norm{\vb{v}_\infty}$
+\end{lemma}
+\begin{proof}
+    Apply $\Delta$ inequality to $\vb{v}_\infty$ and $\vb{v}_n - \vb{v}_\infty$. So
+    \begin{align}
+        \norm{\vb{v}_n} \le \norm{\vb{v}_\infty} + \norm{\vb{v}_n - \vb{v}_\infty}
+    \end{align}
+    Take limit of both sides and
+    \begin{align}
+        \lim \norm{\vb{v}_n} \le \norm{\vb{v}_\infty} + \lim \norm{\vb{v}_n - \vb{v}_\infty}
+    \end{align}
+    We can then apply the $\Delta$ inequality the other way and we get
+    \begin{align}
+        &\norm{\vb{v}_\infty} \le  \lim \norm{\vb{v}_n} + \lim \norm{\vb{v}_\infty - \vb{v}_n}
+    \end{align}
+    \begin{align}
+&\boxed{            \norm{\vb{v}_\infty} \le \lim \norm{\vb{v}_n} \le \norm{\vb{v}_\infty}
+\implies            \lim \norm{\vb{v}_n} = \norm{\vb{v}_\infty}}
+    \end{align}
+\end{proof}
+
+\begin{definition}
+    Suppose $\{ \vb{v}_n \}$ is an orthonormal sequence in $V$. We say that $\{ \vb{v}_n \}$ is closed (or that they are an orthonormal basis) if for every $\vb{v} \in V$,
+    \begin{align}
+        \vb{v} = \sum_{i=1}^\infty \langle \vb{v}, \vb{v}_i \rangle \vb{v}_i
+    \end{align}
+\end{definition}
+
+\subsection{Main Theorem of This Course}
+\begin{theorem}
+    The set
+    \begin{align}
+        \{ e^{2\pi int} \}
+    \end{align}
+    forms a closed, orthonormal set of functions in $C[0,1]$.
+\end{theorem}

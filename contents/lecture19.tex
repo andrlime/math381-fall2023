@@ -1,0 +1,122 @@
+\section{Lecture 19}
+\subsection{Some MORE Properties}
+\begin{enumerate}
+    \item[5.5.] Product, again.
+    \begin{align}
+        \widehat{f \cdot g}(\xi) = \dfrac{1}{\sqrt{2\pi}} \cdot (\hat{f} * \hat{g})(\xi)
+    \end{align}
+    \begin{proof}
+        Taking the FT of the left side (use Property 10) we get
+        \begin{align}
+            (f \cdot g)(-x)
+        \end{align}
+        Taking the FT of the right side, via Property 5, we get
+        \begin{align}
+            \dfrac{1}{\sqrt{2\pi}} \cdot \sqrt{2\pi} \cdot \hat{\hat{f}} \cdot \hat{\hat{g}}
+        \end{align}
+        which is equivalent to
+        \begin{align}
+            f(-x) \cdot g(-x)
+        \end{align}
+        which shows that both sides are the same.
+    \end{proof}
+    \item[7.] If $f$ vanishes outside $0, 1$, then
+    \begin{align}
+        a_n(f) = \sqrt{2\pi} \cdot \hat{f}(2\pi n)
+    \end{align}
+    \begin{proof}
+        \begin{align}
+            a_n(f) &= \int_0^1 f(t) e^{-2\pi in t} \dd{t}\\
+            &= \int_{-\infty}^\infty f(t) e^{-2\pi in t} \dd{t}\\
+            &= \int_{-\infty}^\infty f(t) e^{-i (2\pi n) t} \dd{t}\\
+            &= \sqrt{2\pi} \cdot \hat{f}(2\pi n)
+        \end{align}
+    \end{proof}
+    \item[8.] Plancharel's Identity.\footnote{This is a mess but it does make sense.}
+    \begin{align}
+        \norm{\hat{f}} = \norm{f}
+    \end{align}
+    This can be proven for the special case, all functions that vanish outside some finite interval $[a, b] \subset \mathbb{R}$.
+    \begin{proof}
+        Using translation,
+        \begin{align}
+            \hat{f}(\xi + a) = \hat{f}(\xi) \cdot e^{i\xi a}
+        \end{align}
+        Define
+        \begin{align}
+            g(x) := f(x + a)
+        \end{align}
+        Then, 
+        \begin{align}
+            \norm{g} = \int \abs{f(x+a)}^2 \dd{x} = \int \abs{f(y)}^2 \dd{y}
+        \end{align}
+        And,
+        \begin{align}
+            \norm{\hat{g}} &= \int \abs{\hat{f}(\xi) \cdot e^{i\xi a}}^2 \dd{\xi}\\
+            &= \int \abs{\hat{f}(\xi)}^2 \dd{\xi}\\
+            &= \norm{\hat{f}}^2
+        \end{align}
+        So
+        \begin{align}
+            \norm{\hat{g}} = \norm{g} \implies \norm{\hat{f}} = \norm{f}
+        \end{align}
+        So, we want to prove this true for all functions $g$, which vanish on the interval $[0, b-a]$. That is, this restates the theorem as needing to prove
+        \begin{align}
+            \norm{\hat{g}} = \norm{g}
+        \end{align}
+        for all functions that vanish outside
+        \begin{align}
+            [0, C] \subset \mathbb{R}
+        \end{align}
+        Using dilation, define
+        \begin{align}
+            h(x) := g(C \cdot x)
+        \end{align}
+        Then,
+        \begin{align}
+            \norm{h}^2 &= \int \abs{g(C\cdot x)}^2 \dd{x}\\
+            &= \dfrac{1}{C} \cdot \int \abs{g(y)}^2 \dd{y}\\
+            &= \dfrac{1}{C} \cdot \norm{g}^2
+        \end{align}
+        and
+        \begin{align}
+            \norm{\hat{h}}^2 &= \int \abs{\dfrac{1}{C} \hat{g}(\frac{\xi}{C})} \dd{\xi}\\
+            &= \int \abs{\frac{1}{C} \cdot \hat{g}(\eta)}^2 \cdot \abs{C} \dd{\eta}\\
+            &= \frac{1}{C} \norm{\hat{g}}^2
+        \end{align}
+        Due to $h$ being defined as a dilation, $h$ vanishes outside $[0,1]$. So, it suffices to prove this Lemma for functions that vanish outside $[0,1]$, which is already proven in (19.2-6). That is, suppose $\hat{f}$ vanishes outside $[0,1]$. By Property 7,
+        \begin{align}
+            a_n(f) = \sqrt{2\pi} \cdot \hat{f}(2\pi n)
+        \end{align}
+        Now, we can use modulation. Define
+        \begin{align}
+            g_t(x) := f(x) \cdot e^{2\pi it x}
+        \end{align}
+        Then,
+        \begin{align}
+            \norm{g_t}^2 = \int \abs{f(x)}^2 \dd{x} = \norm{f}^2
+        \end{align}
+        and,
+        \begin{align}
+            a_n(g_t) = \sqrt{2\pi} \cdot \hat{g_t}(2\pi n) = \sqrt{2\pi} \cdot \hat{f}(2\pi n + t)
+        \end{align}
+        Then,
+        \begin{align}
+            2\pi \norm{f}^2 = \int_0^{2\pi} \norm{f}^2 \dd{t} &= \int_0^{2\pi} \norm{g_t}^2 \dd{t} = \int_0^{2\pi} \sum \abs{a_n(g_t)}^2 \dd{t}\\
+            &= \int_0^{2\pi} 2\pi \sum \abs{\hat{f}(2\pi n + t)}^2 \dd{t}\\
+            &= 2\pi \sum \int_0^{2\pi} \abs{\hat{f}(2\pi n + t)}^2 \dd{t}
+        \end{align}
+        Use the substitution $s = 2\pi n + t$ and we get
+        \begin{align}
+            2\pi \sum \int_{2\pi n}^{2\pi (n + 1)} \abs{\hat{f}(s)}^2 \dd{s}
+        \end{align}
+        or
+        \begin{align}
+            2\pi \int \abs{\hat{f}(s)}^2 \dd{s} = 2\pi \norm{\hat{f}}^2
+        \end{align}
+        so, by transitivity, (19.31) equals (19.35), so
+        \begin{align}
+            \norm{f}^2 = \norm{\hat{f}}^2
+        \end{align}
+    \end{proof}
+\end{enumerate}

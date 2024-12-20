@@ -1,0 +1,90 @@
+\section{Lecture 11}
+``We're closing the parentheses; last class was the parentheses.''
+
+\subsection{Convergence of Fourier Series}
+We showed
+\begin{lemma}
+    If $f: \mathbb{R} \to \mathbb{R}$ is continuous, differentiable, and periodic with period $1$, then
+    \begin{align}
+        (S_Nf)(x) \to_{N \to \infty} f(x) && \text{pointwise}
+    \end{align}
+\end{lemma}
+A similar proof of this theorem leads to a stronger statement
+\begin{lemma}
+    If $f: \mathbb{R} \to \mathbb{R}$ continuous, continuously differentiable except at finitely many points $\in [0,1]$, and periodic with period $1$, then,
+    \begin{align}
+        (S_Nf)(x) \to_{N\to\infty} f(x) && \text{uniformly}
+    \end{align}
+\end{lemma}
+We can extend this to norm-wise convergence
+\begin{lemma}
+    For every $h \in C[0,1]$, $\norm{S_Nh} \le \norm{h}$
+    \begin{proof}
+        Bessel's Inequality says this, but with squares.
+        \begin{align}
+            \norm{S_Nh}^2 \le \norm{h}^2
+        \end{align}
+    \end{proof}
+\end{lemma}
+The next Lemma is less trivial
+\begin{lemma}
+    If $f \in C[0,1]$ then there exists a sequence $g_N$ such that
+    \begin{enumerate}
+        \item Each $g_N$ is continuous, continuously differentiable except at finitely many points, and periodic with period 1
+        \item $g_N \to f$ in norm
+    \end{enumerate}
+\end{lemma}
+Then, recall
+\begin{theorem}
+    $\{ e^{2\pi int} \mid n \in \mathbb{Z} \}$ is a complete orthonormal set in $C[0,1]$.
+\end{theorem}
+\begin{proof}
+    Need only to show completeness, i.e., that if $f \in C[0,1]$, then $S_Nf \to f$ in norm. By Lemmma 18, there is a sequence $g_N$ that $g_N \to f$ in norm.
+    \begin{align}
+        \norm{S_Nf - f} &= \norm{S_Nf - S_Ng_k + S_Ng_k - g_k + g_k - f}\\
+        &= \norm{(S_Nf - S_Ng_k) + (S_Ng_k - g_k) + (g_k - f)}
+    \end{align}
+    By the Triangle Inequality,
+    \begin{align}
+        (11.5) &\le \norm{S_Nf - S_Ng_k} + \norm{S_Ng_k - g_k} + \norm{g_k - f}
+    \end{align}
+    Given $\varepsilon$, there is $k$ such that
+    \begin{align}
+        \norm{f - g_k} < \varepsilon
+    \end{align}
+    Take this $k$
+    \begin{align}
+        \norm{S_Nf - S_Ng_k} &= \norm{S_N(f-g_k)}\\
+        &\le \norm{f-g_k}\\
+        &< \varepsilon
+    \end{align}
+    Next, by Lemma 11.2,
+    \begin{align}
+        S_Ng_k \to g_k && \text{ uniformly}
+    \end{align}
+    i.e., there is $N_0$ such that $\forall N > N_0$, for all $x$,
+    \begin{align}
+        \abs{S_Ng_k - g_k} \le \varepsilon
+    \end{align}
+    Then,
+    \begin{align}
+        \norm{S_Ng_k - g_k}^2 = \int_0^1 \abs{S_Ng_k(x) - g_k(x)}^2 \dd{x} \stackrel{(11.12)}{<} \varepsilon^2
+    \end{align}
+    So
+    \begin{align}
+        \norm{S_Ng_k - g_k} \le \varepsilon
+    \end{align}
+    So
+    \begin{align}
+        \norm{(S_Nf - S_Ng_k) + (S_Ng_k - g_k) + (g_k - f)} \le 3\varepsilon
+    \end{align}
+    Then, use $\varepsilon := \varepsilon/3$ and
+    \begin{align}
+        \norm{(S_Nf - S_Ng_k) + (S_Ng_k - g_k) + (g_k - f)} \le \varepsilon
+    \end{align}
+    Proving that
+    \begin{align}
+        S_Nf \to f
+    \end{align}
+\end{proof}
+Lemma 11.4, however, is still unproven, and can be proven using pictures.\footnote{????????}

@@ -1,0 +1,50 @@
+\section{Lecture 21}
+The third application of the Fish Formula was completed in this lecture.\footnote{The proof for this was really messy and non-linear, so I omitted most of the computational steps.}
+\subsection{Shannon Nyquist Theorem}
+Let $a=1$, and let $f: \mathbb{R} \to \mathbb{C}$. Then, we claim
+\begin{lemma}
+    If $f: \mathbb{R} \to \mathbb{C}$ satisfies
+    \begin{align}
+        \hat{f}(\xi) \text{ vanishes for $\abs{\xi} > C/2$}
+    \end{align}
+    then $f$ in its entirety can be reconstructed from the samples
+    \begin{align}
+        \cdots, f(-2/C), f(-1/C), f(0), f(1/C), f(2/C), \cdots
+    \end{align}
+\end{lemma}
+\begin{proof}
+    We can do this proof for the case $C=1$, as for all other $C$, the process is identical. Let
+    \begin{align}
+        g(x) := f(x) \cdot e^{i\lambda x}    
+    \end{align}
+    By PSF, when $a=1$ and $b=0$,
+    \begin{align}
+        \sum f(n) e^{i\lambda n} &= \sqrt{2\pi} \sum \hat{g}(2\pi n)\\
+        &= \sqrt{2\pi} \sum \hat{f}(2\pi (n-\lambda)) & \text{via previous properties}
+    \end{align}
+    Then, let $\lambda \in [-1/2, 1/2]$ and $\xi > \pi c$. Previous equation becomes
+    \begin{align}
+        \sqrt{2\pi}\left[ \hat{f}(-2\pi \lambda) + \cdots \right]
+    \end{align}
+    where the only term that does not vanish is that shown above, becoming
+    \begin{align}
+        \sqrt{2\pi} \hat{f}(-2\pi \lambda)
+    \end{align}
+    so
+    \begin{align}
+        \sum f(n) e^{i\lambda n} = \sqrt{2\pi} \hat{f}(-2\pi\lambda)
+    \end{align}
+    That is, given the sample values, we can find the Fourier Transform of $f$ and reconstruct it. To do so, use $\mathcal{F}^{-1}$:
+    \begin{align}
+        f(x) &= \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \hat{f}(\xi) e^{ix\xi} \dd{\xi}\\
+        &= \underbrace{...}_{c=1} = \dfrac{1}{\sqrt{2\pi}} \sum_n f(n) e^{in\xi/2\pi} \dd{\xi}
+    \end{align}
+    Moving things around and doing an (unknown) substitution we get
+    \begin{align}
+        \dfrac{1}{2\pi} \sum_n f(n) \int_{-\pi}^\pi e^{i\xi (n/2\pi + x)} \dd{\xi}
+    \end{align}
+    Integrating, we eventually get
+    \begin{align}
+        \boxed{f(x) = \dfrac{1}{\pi} \sum_n f(n) \cdot \text{sinc}(\dfrac{n}{2\pi} + x)}
+    \end{align}
+\end{proof}

@@ -1,0 +1,109 @@
+\contentsline {section}{\numberline {1}Lecture 1}{5}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Some Motivation}{5}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}1D Example}{5}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Sets}{5}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Some common sets}{6}{subsubsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.4}Functions}{6}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Tuples}{6}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Complex Numbers}{6}{subsection.1.6}%
+\contentsline {section}{\numberline {2}Lecture 2}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}A Continued Rant on Complex Numbers}{8}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Dividing Complex Numbers}{8}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}A Discussion on Sequence Convergence}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Series Convergence}{9}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Exponentials}{10}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Lecture 3}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Logarithms}{11}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Calculus of Periodic Functions}{11}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Derivatives of functions $f: \mathbb {R} \to \mathbb {C}$}{11}{subsubsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.3}Vector Spaces}{12}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Lecture 4}{13}{section.4}%
+\contentsline {subsection}{\numberline {4.1}More on Derivatives and Integrals}{13}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Inner Product}{13}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Properties of a (Real) Inner Product}{14}{subsubsection.4.2.1}%
+\contentsline {section}{\numberline {5}Lecture 5}{15}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Complex Inner Products}{15}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Properties of a (Complex) Inner Product}{15}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Fourier Motivation}{16}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Lecture 6}{19}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Convergence}{19}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Tangent: Triangle Inequality and Cauchy-Schwartz}{19}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Back to Convergence}{19}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Main Theorem of This Course}{20}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Lecture 7}{21}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Fourier Series for Real Functions}{21}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Digression on Sound}{22}{subsection.7.2}%
+\contentsline {subsubsection}{\numberline {7.2.1}Sound Compression}{22}{subsubsection.7.2.1}%
+\contentsline {section}{\numberline {8}Lecture 8}{23}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Bessel and Parseval}{23}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}An Example}{24}{subsection.8.2}%
+\contentsline {section}{\numberline {9}Lecture 9}{26}{section.9}%
+\contentsline {subsection}{\numberline {9.1}The Notion of Convergence}{26}{subsection.9.1}%
+\contentsline {section}{\numberline {10}Lecture 10}{29}{section.10}%
+\contentsline {subsection}{\numberline {10.1}The Definition of Convergence}{29}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Back to Fourier Analysis}{29}{subsection.10.2}%
+\contentsline {section}{\numberline {11}Lecture 11}{31}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Convergence of Fourier Series}{31}{subsection.11.1}%
+\contentsline {section}{\numberline {12}Lecture 12}{33}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Heat}{33}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Diffusion Equations}{33}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Fourier and the Heat Equation}{33}{subsection.12.3}%
+\contentsline {section}{\numberline {13}The Actual Midterm Exam}{35}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Problems}{35}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Solutions}{35}{subsection.13.2}%
+\contentsline {subsubsection}{\numberline {13.2.1}Problem 1}{35}{subsubsection.13.2.1}%
+\contentsline {subsubsection}{\numberline {13.2.2}Problem 2}{36}{subsubsection.13.2.2}%
+\contentsline {subsubsection}{\numberline {13.2.3}Problem 3}{36}{subsubsection.13.2.3}%
+\contentsline {subsection}{\numberline {13.3}Some notes}{37}{subsection.13.3}%
+\contentsline {section}{\numberline {14}Lecture 13}{38}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Heat Equation}{38}{subsection.14.1}%
+\contentsline {subsection}{\numberline {14.2}Wave Equation}{39}{subsection.14.2}%
+\contentsline {section}{\numberline {15}Lecture 14}{41}{section.15}%
+\contentsline {subsection}{\numberline {15.1}More on the Heat Equation / Diffusion Equation}{41}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}Continuity}{42}{subsection.15.2}%
+\contentsline {section}{\numberline {16}Lecture 15}{46}{section.16}%
+\contentsline {subsection}{\numberline {16.1}More on Continuity}{46}{subsection.16.1}%
+\contentsline {subsection}{\numberline {16.2}Summary}{47}{subsection.16.2}%
+\contentsline {subsection}{\numberline {16.3}A Corollary}{48}{subsection.16.3}%
+\contentsline {subsection}{\numberline {16.4}Heat Equation Again}{48}{subsection.16.4}%
+\contentsline {subsection}{\numberline {16.5}Alcoholism and Convolutions}{49}{subsection.16.5}%
+\contentsline {section}{\numberline {17}Lecture 16}{51}{section.17}%
+\contentsline {subsection}{\numberline {17.1}Redefining Convolution}{51}{subsection.17.1}%
+\contentsline {subsection}{\numberline {17.2}A Black Box}{52}{subsection.17.2}%
+\contentsline {subsection}{\numberline {17.3}Time Variance}{52}{subsection.17.3}%
+\contentsline {subsection}{\numberline {17.4}The Fundamental Theorem of Engineering}{53}{subsection.17.4}%
+\contentsline {subsection}{\numberline {17.5}The Proof}{53}{subsection.17.5}%
+\contentsline {section}{\numberline {18}Lecture 17}{55}{section.18}%
+\contentsline {subsection}{\numberline {18.1}The Fourier Transform}{55}{subsection.18.1}%
+\contentsline {subsection}{\numberline {18.2}Several Lemmas}{55}{subsection.18.2}%
+\contentsline {subsection}{\numberline {18.3}Some Analogue Proofs}{57}{subsection.18.3}%
+\contentsline {section}{\numberline {19}Lecture 18}{59}{section.19}%
+\contentsline {subsection}{\numberline {19.1}The Fourier Transform Revisited}{59}{subsection.19.1}%
+\contentsline {subsection}{\numberline {19.2}Some (more) Properties}{59}{subsection.19.2}%
+\contentsline {subsection}{\numberline {19.3}Radio}{60}{subsection.19.3}%
+\contentsline {subsubsection}{\numberline {19.3.1}AM (Amplitude Modulation) Radio}{60}{subsubsection.19.3.1}%
+\contentsline {subsubsection}{\numberline {19.3.2}FM (Frequency Modulation) Radio}{60}{subsubsection.19.3.2}%
+\contentsline {subsection}{\numberline {19.4}Convolutions for Nonperiodic Functions}{61}{subsection.19.4}%
+\contentsline {subsection}{\numberline {19.5}First Important Fourier Transform}{61}{subsection.19.5}%
+\contentsline {section}{\numberline {20}Lecture 19}{63}{section.20}%
+\contentsline {subsection}{\numberline {20.1}Some MORE Properties}{63}{subsection.20.1}%
+\contentsline {section}{\numberline {21}Lecture 20}{66}{section.21}%
+\contentsline {subsection}{\numberline {21.1}EVEN MORE PROPERTIES}{66}{subsection.21.1}%
+\contentsline {subsection}{\numberline {21.2}Poisson Summation Formula}{66}{subsection.21.2}%
+\contentsline {subsection}{\numberline {21.3}Three Applications of the Fish Formula}{68}{subsection.21.3}%
+\contentsline {subsubsection}{\numberline {21.3.1}Proof of Fourier Inversion}{68}{subsubsection.21.3.1}%
+\contentsline {subsubsection}{\numberline {21.3.2}Taking $a \to 0$}{69}{subsubsection.21.3.2}%
+\contentsline {section}{\numberline {22}Lecture 21}{70}{section.22}%
+\contentsline {subsection}{\numberline {22.1}Shannon Nyquist Theorem}{70}{subsection.22.1}%
+\contentsline {section}{\numberline {23}Lecture 22}{72}{section.23}%
+\contentsline {subsection}{\numberline {23.1}Going Back to Differential Equations}{72}{subsection.23.1}%
+\contentsline {subsection}{\numberline {23.2}Airy Equation}{73}{subsection.23.2}%
+\contentsline {subsection}{\numberline {23.3}A Third Example}{74}{subsection.23.3}%
+\contentsline {section}{\numberline {24}Lecture 23}{75}{section.24}%
+\contentsline {subsection}{\numberline {24.1}The Heat Equation, Revisited}{75}{subsection.24.1}%
+\contentsline {subsection}{\numberline {24.2}Multidimensional Functions}{76}{subsection.24.2}%
+\contentsline {subsection}{\numberline {24.3}Properties of a Multidimensional Fourier Transform}{77}{subsection.24.3}%
+\contentsline {section}{\numberline {25}Lecture 24}{78}{section.25}%
+\contentsline {subsection}{\numberline {25.1}Some more on the $n$-D Fourier Transform}{78}{subsection.25.1}%
+\contentsline {subsection}{\numberline {25.2}Pulses}{78}{subsection.25.2}%
+\contentsline {subsection}{\numberline {25.3}Radial Invariance}{79}{subsection.25.3}%

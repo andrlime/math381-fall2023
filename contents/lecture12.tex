@@ -1,0 +1,80 @@
+\section{Lecture 12}
+``I'm gonna make your Earth professor happy.''
+\subsection{Heat}
+Heat is a name we give to the average kinetic energy of molecules. We will talk about conduction, one of many ways of heat transfer.
+\begin{enumerate}
+    \item Heat in solids is the jittering of atoms.
+    \item Movement of heat is a diffusive process.
+    \item ``Phonons'' carry kinetic energy, similar to photons, and travel at the speed of sound.
+\end{enumerate}
+
+\subsection{Diffusion Equations}
+Suppose there are two chambers separated by some barrier, one with $N_1$ particles and the other with $N_2$ particles at $t=t_0$. When the barrier is removed, some particles move from $C_1$ to $C_2$ and vice versa. This ``some'' is some constant:
+\begin{align}
+    &\alpha N_1 \Delta t \text{ particles move from 1 to 2}\\
+    &\alpha N_2 \Delta t \text{ particles move from 2 to 1}\\
+    \abs{\Delta} &= \alpha(N_1 - N_2) \Delta t
+\end{align}
+The rate of flow is
+\begin{align}
+    \frac{\alpha(N_1 - N_2) \Delta t}{\Delta t} = \alpha(N_1 - N_2)
+\end{align}
+For heat, energy flows similarly to these particles.
+\begin{definition}
+    \textbf{First of Fourier's Heat Laws} Heat flows from hot to cold (high concentration to low concentration).
+\end{definition}
+
+\subsection{Fourier and the Heat Equation}
+Suppose there is a long thin wire along the x-axis. There is some temperature distribution
+\begin{align}
+    T(t, x)
+\end{align}
+but what is
+\begin{align}
+    \pdv{T}{t}
+\end{align}
+the change with respect to time? To find this, divide the wire into many tiny intervals of length
+\begin{align}
+    \Delta x
+\end{align}
+centered at $n\Delta x$, i.e.
+\begin{align}
+    \left[ n\Delta x - \frac{1}{2}\Delta x, n\Delta x + \frac{1}{2}\Delta x \right]
+\end{align}
+which are ``chambers'' of temperature $T(t_0, n\Delta x)$. After $\Delta t$ time, there is some flow from the $(n-1)$-th interval and the $(n+1)$-th interval. Define
+\begin{align}
+    x_0 := n \Delta x
+\end{align}
+The flow from the left $(n-1)$ equals
+\begin{align}
+    \alpha\left( T(t_0, x_0 - \Delta x) - T(t_0, x_0) \right) \Delta t
+\end{align}
+Similarly, the flow from the right $(n+1)$ equals
+\begin{align}
+    \alpha\left( T(t_0, x_0 + \Delta x) - T(t_0, x_0) \right) \Delta t
+\end{align}
+All together,
+\begin{align*}
+    \boxed{T(t_0+\Delta t, x_0) - T(t_0, x_0) \propto \left[ T(t_0, x_0 + \Delta x) - 2T(t_0, x_0) + T(t_0, x - \Delta x) \right] \Delta t}
+\end{align*}
+Then,
+\begin{align*}
+    \dfrac{T(t_0+\Delta t, x_0) - T(t_0, x_0)}{\Delta t} \propto T(t_0, x_0 + \Delta x) - 2T(t_0, x_0) + T(t_0, x - \Delta x)
+\end{align*}
+The left side is $\pdv{T}{t}$ and the right side can be Taylor expanded to the second derivative term\footnote{The rest are too small to matter as $\Delta x\to 0$} and simplified, and we get
+\begin{align}
+    \pdv{T}{t} \propto \pdv[2]{T}{x}
+\end{align}
+In one dimension, this becomes
+\begin{align}
+    \boxed{\pdv{T}{t} = \kappa\pdv[2]{T}{x}}
+\end{align}
+where $\kappa > 0$ is some proportionality constant, or in multiple dimensions,
+\begin{align}
+    \boxed{\pdv{T}{t} = \kappa\laplacian{T}}
+\end{align}
+This is a \textbf{partial differential equation}. Compare that to an ordinary differential equation such as
+\begin{align}
+    F = m\ddot{x}
+\end{align}
+and finding solutions is much more difficult and annoying. In PDEs, ``initial conditions`` are called boundary conditions, and to have a unique solution to a PDE, such boundary values are needed.

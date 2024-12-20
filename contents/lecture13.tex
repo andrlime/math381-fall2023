@@ -1,0 +1,109 @@
+\section{Lecture 13}
+\begin{enumerate}
+    \item ``Complex numbers are intermediate steps.''
+    \item ``It sounds crazy, but it works.''
+\end{enumerate}
+\subsection{Heat Equation}
+We want some function
+\begin{align}
+    u(t, x): [0, \infty) \times \mathbb{L} \to \mathbb{R}
+\end{align}
+such that
+\begin{align}
+    \pdv{u}{t} &= \pdv[2]{u}{x}\\
+    u(t_0, x) &= h(x)
+\end{align}
+Let $u(t,x)$ be a solution. Then, for every $t_0$, look at $x \to u(t_0, x)$ and Fourier expand:
+\begin{align}
+    u(t_0, x) = \sum U_n(t_0) \cdot e^{2\pi inx}
+\end{align}
+which implies
+\begin{align}
+    u(t, x) = \sum U_n(t) \cdot e^{2\pi inx}
+\end{align}
+Using this,
+\begin{align}
+    \pdv{u}{t} &= \sum U_n'(t) \cdot e^{2\pi inx}\\
+    \pdv[2]{u}{x} &= \sum U_n(t) \cdot (-4\pi^2n^2) \cdot e^{2\pi inx}
+\end{align}
+which indicates
+\begin{align}
+    \sum U_n'(t) \cdot e^{2\pi inx} = \sum U_n(t) \cdot (-4\pi^2n^2) \cdot e^{2\pi inx}
+\end{align}
+Since $\{ e^{2\pi inx} \}$ is an orthonormal set, for two linear combinations to be equal, the coefficients must be equal, so 
+\begin{align}
+    U_n'(t) = U_n(t) \cdot (-4\pi^2n^2)
+\end{align}
+This is a simple ODE with solution
+\begin{align}
+    U_n(t) = c_n e^{(-4\pi^2n^2)t}
+\end{align}
+Plugging in $t=0$ to $u(0, x) = h(x)$,
+\begin{align}
+    h(x) = u(0, x) &= \sum_{n \in \mathbb{Z}} c_n e^{2\pi inx} & t = 0 \implies e^{\cdots} = 1
+\end{align}
+So, $c_n$ are the Fourier coefficients of $h(x)$, the boundary condition. Plugging in, this becomes a two step process:
+\begin{enumerate}
+    \item Fourier expand
+    \begin{align}
+        h(x) = \sum_{n \in \mathbb{Z}} c_n e^{2\pi in x}
+    \end{align}
+    \item Solution becomes
+    \begin{align}
+        u(t, x) &= \sum_{n \in \mathbb{Z}} c_n e^{(-4\pi^2n^2)t} e^{2\pi in x} & (13.5/10)
+    \end{align}
+\end{enumerate}
+We now claim that $u(t, x)$ is real
+\begin{lemma}
+    If $h(x)$ is real, then $u(t, x)$ is real.
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        h(x) \in \mathbb{R} &\implies c_n = \overline{c_{-n}}
+    \end{align}
+    If $\overline{U_n(t)} = U_{-n}(t)$, then $u(t, x)$ is also real. This is true:
+    \begin{align}
+        U_n(t) &= c_n \cdot e^{(-4\pi^2n^2)t}\\
+        &= c_n \cdot e^{(-4\pi^2(-n)^2)t}
+    \end{align}
+    Taking the conjugate,
+    \begin{align}
+        \overline{U_n(t)} &= \overline{c_n \cdot e^{(-4\pi^2(-n)^2)t}}\\
+        &= \overline{c_n} \cdot \overline{e^{(-4\pi^2(-n)^2)t}}\\
+        &= c_{-n} \cdot {e^{(-4\pi^2(-n)^2)t}}\\
+        &= U_{-n}(t)
+    \end{align}
+\end{proof}
+
+\subsection{Wave Equation}
+A similar process can be applied to the wave equation:
+\begin{align}
+    \pdv[2]{\Psi}{t} = \pdv[2]{\Psi}{x}
+\end{align}
+First, we claim
+\begin{align}
+    \Psi(t, x) = \sum_n U_n(t) \cdot e^{2\pi in x}
+\end{align}
+So,
+\begin{align}
+    \pdv[2]{\Psi}{t} &= \sum_n U_n''(t) \cdot e^{2\pi in x}\\
+    \pdv[2]{\Psi}{x} &= \sum_n U_n(t) \cdot (-4\pi^2n^2) \cdot e^{2\pi in x}
+\end{align}
+So,
+\begin{align}
+    \sum_n U_n''(t) \cdot e^{2\pi in x} = \sum_n U_n(t) \cdot (-4\pi^2n^2) \cdot e^{2\pi in x}
+\end{align}
+and by the same linear independence argument as applied in (13.9),
+\begin{align}
+    U_n''(t) = U_n(t) \cdot (-4\pi^2n^2)
+\end{align}
+which is another simple ODE, with solution
+\begin{align}
+    U_n(t) = a_n e^{2\pi in t} + b_n e^{-2\pi in t}
+\end{align}
+So, the general solution to the wave equation has form
+\begin{align}
+    \Psi(t, x) &= \sum_n \left[ a_n e^{2\pi in t} + b_n e^{-2\pi in t} \right] e^{2\pi inx}\\
+    &= \sum_n a_n e^{2\pi in (x + t)} + \sum_n b_n e^{2\pi in (x - t)}
+\end{align}
+which indicates the solution is the sum of two functions moving in opposite directions at some velocity.

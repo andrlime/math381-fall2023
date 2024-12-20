@@ -1,0 +1,160 @@
+\section{Lecture 16}
+``It's convoluted''
+\subsection{Redefining Convolution}
+Recall that for periodic functions
+\begin{definition}
+    The convolution of \textbf{two periodic functions} $f$ and $g$ is
+    \begin{align}
+        (f * g)(x) := \int_0^1 f(t)\cdot g(x-t) \dd{t}
+    \end{align}
+\end{definition}
+It is quite trivial to prove
+\begin{lemma}
+    \begin{align}
+        a_n(f * g) = a_n(g * f)
+    \end{align}
+    and
+    \begin{align}
+        f*g = g*f
+    \end{align}
+\end{lemma}
+via simple commutativity. Note that (16.1) does not apply to non-periodic functions, which would be some integral from $-\infty$ to $+\infty$.
+\begin{lemma}
+    $$f*g = g*f$$
+    but in a different way.
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \int_0^1 f(t)\cdot g(x-t) \dd{t} &= -\int_x^{x-1} f(x-s)\cdot g(s) \dd{s}\\
+        &= \int_0^1 f(x-s)\cdot g(s) \dd{s} & \text{It's periodic}
+    \end{align}
+\end{proof}
+\noindent Blurring is an example of a convolution.
+\begin{align}
+    (B_\varepsilon f)(x) = \frac{1}{\varepsilon} \int_0^\varepsilon f(x - s) \dd{s}
+\end{align}
+We can define
+\begin{align}
+    1_{[0,\varepsilon]}(x) := \begin{cases}
+        1 & x \in [0, \varepsilon]\\
+        0 & \text{else}
+    \end{cases}
+\end{align}
+And it can be shown that
+\begin{align}
+    (B_\varepsilon f)(x) = \left(f * \left[ \frac{1}{\varepsilon} 1_{[0,\varepsilon]} \right]\right)
+\end{align}
+
+\subsection{A Black Box}
+Suppose there is a signal
+\begin{align}
+    f: \mathbb{R} \to \mathbb{C}
+\end{align}
+a system
+\begin{align}
+    T
+\end{align}
+and a response
+\begin{align}
+    Tf: \mathbb{R} \to \mathbb{C}
+\end{align}
+from the signal.
+\subsection{Time Variance}
+Suppose there is some system
+\begin{align}
+    S_a
+\end{align}
+that time shifts an input function
+\begin{align}
+    f(x)
+\end{align}
+into
+\begin{align}
+    f(x + a)
+\end{align}
+\begin{definition}
+    A system $T$ is called
+    \begin{enumerate}
+        \item \textbf{Time Invariant} if $TS_a = S_aT$.
+        \item \textbf{Linear} if $T(\lambda f+g) = \lambda T(f) + T(g)$, which holds true in approximations, but is generally not true.
+    \end{enumerate}
+\end{definition}
+\subsection{The Fundamental Theorem of Engineering}
+\begin{theorem}
+    \textbf{(The Fundamental Theorem of Engineering)} Suppose $T$ is linear and time-invariant. Then,
+    \begin{enumerate}
+        \item $T \left( e^{2\pi in t} \right)$ is always a multiple of $e^{2\pi in t}$, i.e.
+        \begin{align}
+            e^{2\pi in t}
+        \end{align}
+        are the eigenvalues of $T$.
+        \item If
+        \begin{align}
+            \sum_{n \in \mathbb{Z}} \abs{\lambda_n} < \infty
+        \end{align}
+        then there exists a function $g$ such that
+        \begin{align}
+            Tf = f * g
+        \end{align}
+        i.e. all linear, time-invariant systems are just convolutions.
+    \end{enumerate}
+\end{theorem}
+\subsection{The Proof}
+First, the eigenvalues.
+\begin{proof}
+    Denote $f_n = T e^{2\pi in t}$. Then,
+    \begin{align}
+        S_a T e^{2\pi in t} = T S_a e^{2\pi in t}
+    \end{align}
+    which becomes
+    \begin{align}
+        S_a f_n &= T\left[ e^{2\pi in (t+a)} \right]\\
+        &= T\left[ e^{2\pi in t} \cdot e^{2\pi in a} \right]\\
+        &= e^{2\pi in a} \cdot T\left[ e^{2\pi in t} \right]\\
+        &= e^{2\pi in a} \cdot f_n
+    \end{align}
+    At $t=0$,
+    \begin{align}
+        f_n(0 + a) &= (S_a f_n)(0)\\
+        &= e^{2\pi in a} \cdot f_n(0)
+    \end{align}
+    Hence, let\footnote{Some variable is wrong here.} $f_n(0) := \lambda_n$
+    \begin{align}
+        f_n(a) = \lambda_n \cdot e^{2\pi in a} \implies f_n = \lambda_n \cdot e^{2\pi in t}
+    \end{align}
+    so
+    \begin{align}
+        T(e^{2\pi in t}) = \lambda_n \cdot e^{2\pi in t}
+    \end{align}
+    proving that the result of applying the linear transformation is a multiple of that function.
+\end{proof}
+\noindent Next, that $T$ is a convolution.
+\begin{proof}
+    Let $g(t) = \sum \lambda_n \cdot e^{2\pi in t}$. We claim
+    \begin{align}
+        Tf = f*g \mid \forall f
+    \end{align}
+    By definition, $g(t)$ is continuous. If we can show
+    \begin{align}
+        a_n(Tf) = a_n(f * g)
+    \end{align}
+    then we will have proven that the two are the same.
+    \begin{align}
+        f(t) &= \sum a_n(f) \cdot e^{2\pi in t}\\
+        Tf &= T\left[ \sum a_n(f) \cdot e^{2\pi in t} \right]\\
+        &= \sum a_n(f) \cdot T(e^{2\pi in t}) & \text{linearity}\\
+        &= \sum a_n(f) \cdot \lambda_n \cdot e^{2\pi in t} & \text{Part 1 of Theorem 17.5}
+    \end{align}
+    So,
+    \begin{align}
+        a_n(Tf) = a_n(f) \cdot \lambda_n
+    \end{align}
+    but $\lambda_n$ are just the Fourier coefficients of $g(t)$ by definition, so
+    \begin{align}
+        a_n(Tf) = a_n(f) \cdot a_n(g) = a_n(f*g) && \text{PSet 4 Problem 2}
+    \end{align}
+    So,
+    \begin{align}
+        Tf = f * g && \text{Fourier coefficients equal}
+    \end{align}
+\end{proof}

@@ -1,0 +1,166 @@
+\section{Lecture 17}
+``One of our main tools to show convergence is to strength it and show absolute convergence.''
+\subsection{The Fourier Transform}
+\begin{definition}
+    Let $f: \mathbb{R}\to\mathbb{C}$. The, the Fourier Transform of $f$ is given by
+    \begin{align}
+        \hat{f}(\xi) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty f(x) \cdot e^{-ix\xi} \dd{x}
+    \end{align}
+\end{definition}
+\begin{definition}
+    Let $V$ be the collection of functions
+    \begin{align}
+        f: \mathbb{R}\to\mathbb{C}
+    \end{align}
+    that satisfy
+    \begin{enumerate}
+        \item There is $M$ such that $\abs{f(x)} \le M$
+        \item $f$ is piecewise differentiable
+        \item $\int_{-\infty}^\infty \abs{f(x)} \dd{x} < \infty$
+    \end{enumerate}
+\end{definition}
+
+\subsection{Several Lemmas}
+\begin{lemma}
+    $V$ is a vector space.
+\end{lemma}
+\begin{proof}
+    The first two are trivial\footnote{Nir's words not mine}. The only non obvious claim is that if
+    \begin{align}
+        \int_{-\infty}^\infty \abs{f(x)} \dd{x} < \infty \qand \int_{-\infty}^\infty \abs{g(x)} \dd{x} < \infty
+    \end{align}
+    then
+    \begin{align}
+        \int_{-\infty}^\infty \abs{f(x) + g(x)} \dd{x} < \infty
+    \end{align}
+    By the Triangle Inequality,
+    \begin{align}
+        \int_{-\infty}^\infty \abs{f(x) + g(x)} \dd{x} &\le \int_{-\infty}^\infty \abs{f(x)} + \abs{g(x)} \dd{x}\\
+        &\le \int_{-\infty}^\infty \abs{f(x)} \dd{x} + \int_{-\infty}^\infty \abs{g(x)} \dd{x}
+    \end{align}
+    Both of these are bounded, so
+    \begin{align}
+        \int_{-\infty}^\infty \abs{f(x) + g(x)} \dd{x} < \infty
+    \end{align}
+\end{proof}
+\begin{lemma}
+    If $f, g \in V$, then
+    \begin{enumerate}
+        \item $\int_{-\infty}^\infty \abs{f(x)}^2 \dd{x} < \infty$
+        \item $\int_{-\infty}^\infty f(x)\cdot g(x) \dd{x} < \infty$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    First, to show
+    \begin{align}
+        \int_{-\infty}^\infty \abs{f(x)}^2 \dd{x} < \infty
+    \end{align}
+    let $f \in V$, then
+    \begin{align}
+        \abs{f(x)} \le M
+    \end{align}
+    Then,
+    \begin{align}
+        \int_{-\infty}^\infty \abs{f(x)}^2 \dd{x} &\le \int_{-\infty}^\infty M \cdot \abs{f(x)} \dd{x}\\
+        &\le M\cdot\int_{-\infty}^\infty \abs{f(x)} \dd{x}\\
+        &\le \infty & \int_{-\infty}^\infty \abs{f(x)} \dd{x} < \infty
+    \end{align}
+    Second, to show
+    \begin{align}
+        \int_{-\infty}^\infty f(x)\cdot g(x) \dd{x} < \infty
+    \end{align}
+    we can show that
+    \begin{align}
+        \int_{-\infty}^\infty \abs{f(x)\cdot g(x)} \dd{x} < \infty
+    \end{align}
+    i.e. show absolute convergence. Then,
+    \begin{align}
+        \int_{-\infty}^\infty \abs{f(x)\cdot g(x)} \dd{x} &\le \int_{-\infty}^\infty \abs{f(x)} \cdot \abs{g(x)} \dd{x}\\
+        &\le M \cdot \int_{-\infty}^\infty \abs{g(x)} \dd{x} < \infty
+    \end{align}
+\end{proof}
+\begin{definition}
+    The inner product on $V$ is
+    \begin{align}
+        \langle f, g \rangle = \int_{-\infty}^\infty f(x) \cdot \overline{g(x)} \dd{x}
+    \end{align}
+    and converges because of Lemma 18.4.
+\end{definition}
+
+\subsection{Some Analogue Proofs}
+\begin{lemma}
+    If $f \in V$, then $\hat{f}$ exists and $\hat{f}$ is continuous.
+\end{lemma}
+\begin{proof}
+    We \textbf{first want to show $\hat{f}$ exists}, so we can show it is finite
+    \begin{align}
+        \int_{-\infty}^\infty f(x) \cdot e^{-ix\xi} \dd{x} < \infty
+    \end{align}
+    We can show absolute convergence
+    \begin{align}
+        \int_{-\infty}^\infty \abs{f(x) \cdot e^{-ix\xi}} \dd{x} < \infty
+    \end{align}
+    Indeed,
+    \begin{align}
+        \int_{-\infty}^\infty \abs{f(x) \cdot e^{-ix\xi}} \dd{x} &\le \int_{-\infty}^\infty \abs{f(x)} \cdot \abs{e^{-ix\xi}} \dd{x}\\
+        &= \int_{-\infty}^\infty \abs{f(x)} \dd{x} < \infty
+    \end{align}
+    by $f \in V$, so (17.18) absolutely converges and thus also converges. \textbf{Next, to show continuity}, we want to show
+    \begin{align}
+        \lim_{\xi \to \eta} \hat{f}(\xi) = \hat{f}(\eta)
+    \end{align}
+    or
+    \begin{align}
+        \lim_{\xi \to \eta} \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty f(x) \cdot e^{ix\xi} \dd{x} = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty f(x) \cdot e^{ix\eta} \dd{x}
+    \end{align}
+    We can prove this using $\varepsilon-\delta$; or, if $\abs{\xi - \eta}$ is very small, then
+    \begin{align}
+        \abs{\dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty f(x) \cdot \left[e^{ix\xi} - e^{ix\eta}\right] \dd{x}} < \varepsilon
+    \end{align}
+    \begin{proof}
+        Fix $\varepsilon$. Then, by assumption,
+        \begin{align}
+            \int_{-\infty}^\infty \abs{f(x)} \dd{x} < \infty
+        \end{align}
+        This means that there is some $T$ such that
+        \begin{align}
+            \int_{-\infty}^\infty \abs{f(x)} \dd{x} \approx \int_{-T}^T \abs{f(x)} \dd{x}
+        \end{align}
+        which would imply
+        \begin{align}
+            \left[\int_{-\infty}^{-T} \abs{f(x)} \dd{x} \qand \int_{T}^\infty \abs{f(x)} \dd{x}\right] < \varepsilon
+        \end{align}
+        Next,
+        \begin{align}
+            \abs{\hat{f}(\xi) - \hat{f}(\eta)} = \abs{\int_{-\infty}^\infty f(x) \left[ e^{ix\xi} - e^{ix\eta} \right] \dd{x}}
+        \end{align}
+        Now comes the trick of the proof. We rewrite the integral in (17.28) as
+        \begin{align}
+            \int_{-\infty}^{-T} \cdots + \int_{-T}^{T} \cdots + \int_{T}^{\infty} \cdots
+        \end{align}
+        Define $\zeta := \left[ e^{ix\xi} - e^{ix\eta} \right]$. Then, using the Triangle Inequality,
+        \begin{align}
+            (17.28) &\le \int_{-\infty}^{-T} \abs{f(x)} \cdot \abs{\zeta} \dd{x} + \int_{-T}^{T} \abs{f(x)} \cdot \abs{\zeta} \dd{x} + \int_{T}^{\infty} \abs{f(x)} \cdot \abs{\zeta} \dd{x}
+        \end{align}
+        But, $\abs{\zeta} \le 2$. So,
+        \begin{align}
+            (17.28) &\le 2\int_{-\infty}^{-T} \abs{f(x)} \dd{x} + \int_{-T}^{T} \abs{f(x)} \cdot \abs{\zeta} \dd{x} + 2\int_{T}^{\infty} \abs{f(x)} \dd{x}
+        \end{align}
+        Using (17.27),
+        \begin{align}
+            (17.28) &\le 4\varepsilon + \int_{-T}^{T} \abs{f(x)} \cdot \abs{\zeta} \dd{x}\\
+            &\le 4\varepsilon + \int_{-T}^{T} \abs{f(x)} \cdot \abs{e^{ix\xi} - e^{ix\eta}} \dd{x}\\
+            &\le 4\varepsilon + \int_{-T}^{T} M \cdot \abs{x} \cdot \abs{\xi - \eta} \dd{x}\\
+            &\le 4\varepsilon + 2TM \cdot T \cdot \abs{\xi - \eta}\\
+            &\le 4\varepsilon + 2T^2M \cdot \abs{\xi - \eta}
+        \end{align}
+        So
+        \begin{align}
+            \abs{\xi - \eta} < \frac{\varepsilon}{2T^2M} \implies \abs{\hat{f}(\xi) - \hat{f}(\eta)} < 5\varepsilon
+        \end{align}
+        so if $\varepsilon = \frac{\varepsilon}{5}$, then
+        \begin{align}
+            \abs{\hat{f}(\xi) - \hat{f}(\eta)} < \varepsilon
+        \end{align}
+    \end{proof}
+\end{proof}

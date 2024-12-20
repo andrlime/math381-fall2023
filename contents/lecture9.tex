@@ -1,0 +1,108 @@
+\section{Lecture 9}
+``This is the beginning of the analysis part of this course''
+\subsection{The Notion of Convergence}
+There are three competing schools of thought when it comes to convergence
+\begin{definition}
+    Let $f_n(x), g(x) \in C^\mathbb{C}[0,1]$. Then, we say
+    \begin{enumerate}
+        \item If $\norm{f_n(x) - g(x)} \to_{n\to\infty} 0$, then we say $f_n(x)$ \textbf{converges in norm} to $g(x)$
+        \item If $\forall a, \forall \varepsilon > 0$, $\exists N$ such that
+        $$\forall n > N \implies \abs{f_n(a) - g(a)} < \varepsilon$$
+        then we say $f_n(x)$ \textbf{converges pointwise} to $g(x)$
+        \item If $\forall \varepsilon > 0$, $\exists N$ such that
+        \begin{align}
+            \begin{cases}
+                \forall a \in [0,1]\\
+                \forall n > N
+            \end{cases}
+            \implies \abs{f_n(a) - g(a)} < \varepsilon
+        \end{align}
+        then we say $f_n(x)$ \textbf{converges uniformly} to $g(x)$
+    \end{enumerate}
+\end{definition}
+Then, we claim that
+\begin{proposition}
+    For continuous $n$-differentiable functions $f_n$, the Fourier approximations of $f_n$ converge pointwise to $f_n$.
+\end{proposition}
+First, we can prove a Lemma
+\begin{lemma}
+    Suppose $f: [0,1] \to \mathbb{C}$ is continuous. Then,
+    \begin{align}
+        \braket{f}{e^{2\pi int}} \underset{n\to\infty}{\to} 0
+    \end{align}
+\end{lemma}
+\begin{proof}
+    Use Bessel's Inequality
+    \begin{align}
+        \forall N, \sum_{n=-N}^N \abs{\braket{f}{e^{2\pi int}}}^2 &= \norm{P_{\{e^{-2\pi iNt}, \dots, e^{2\pi int}\}}f}^2\\
+        &= \norm{f_N}^2\\
+        &\le \norm{f}^2
+    \end{align}
+    so as to say for all $N$, this sum is \textbf{bounded}. So, taking $N \to \infty$,
+    \begin{align}
+        \lim_{N\to\infty} \sum_{n=-N}^N \abs{\braket{f}{e^{2\pi int}}}^2  \begin{cases}
+            \text{converges}\\
+            \text{diverges ($\to \infty$)}
+        \end{cases}
+    \end{align}
+    but, divergence is impossible by (9.5), as this sum is \textbf{bounded}, so the individual terms must $\to 0$ in order to converge.
+\end{proof}
+Now we can establish a major theorem.
+\begin{theorem}
+    Suppose $f: \mathbb{R} \to \mathbb{C}$ is some periodic function of period $1$ and is continuous and differentiable. Let $S_n$ be the $n$th partial Fourier expansion of $f$.
+    \begin{align}
+        (S_Nf)(x) = \sum_{n=-N}^N \braket{f}{e^{2\pi int}} \cdot e^{2\pi int}
+    \end{align}
+    Then, we claim
+    \begin{align}
+        (S_Nf) \to f \qq{pointwise}
+    \end{align}
+\end{theorem}
+\begin{proof}
+    We can first prove this for $f(x) = 1$:
+    \begin{align}
+        (S_Nf)(0) = \sum_{n=-N}^N \braket{1}{e^{2\pi int}} \cdot 1 = 1
+    \end{align}
+    and we claim that extending this theorem for all $f \in \mathcal{F} \mid f(0) = 0$ is enough to prove that this theorem applies to all functions $g(x)$:
+    \begin{align}
+        \begin{cases}
+            g(0) = 0 \to \text{cool}\\
+            g(0) \ne 0 \to \text{define } h(x) := g(x) - g(0)
+        \end{cases}
+    \end{align}
+    and we know this works because this forces $g(0) = 0$. We can prove this:
+    \begin{align}
+        (S_Nh) \stackrel{?}{\to} h\\
+    \end{align}
+    This is trivial because we can use the linearity of $S_N$ which is (clearly) a linear transformation
+    \begin{align}
+        S_Nh &= S_N(g(x) - g(0))\\
+        &= S_Ng - S_N(g(0))\\
+        &= S_Ng - g(0)\cdot S_N(1)\\
+        &= S_Ng - g(0)
+    \end{align}
+    If we can show $S_Ng \to g$, then (9.16) is trivially true by (9.10B)
+    \begin{lemma}
+        The claim $S_Ng \to g$, is true for $x = 0$.
+    \end{lemma}
+    \begin{proof}
+        \begin{align}
+            (S_Nf)(0) &= \sum_{n=-N}^N \left[ \int_0^1 f(t) e^{-2\pi int} \dd{t} \right] \cdot e^{2\pi in(0)}\\
+            &= \int_0^1 f(t) \sum_{n=-N}^N e^{-2\pi int} \dd{t}\\
+            &= \int_0^1 f(t) \cdot e^{-2\pi int} \cdot \left[ \left(e^{2\pi it}\right)^{2N} + ... + \left(e^{2\pi it}\right)^{1} \right] \dd{t}\\
+            &= \int_0^1 f(t) \cdot e^{-2\pi int} \cdot \left[ \dfrac{1 - (e^{2\pi it})^{2N+1}}{1-e^{2\pi it}}] \right] \dd{t}\\
+            &= \int_0^1 \dfrac{f(t)}{1-e^{2\pi it}} \cdot \left[ e^{-2\pi iNt} - e^{2\pi i(N+1)t} \right] \dd{t}
+        \end{align}
+        Note that
+        \begin{align}
+            \dfrac{f(t)}{1-e^{2\pi it}} \begin{cases}
+                \qq{is continuous at $t=0$}\\
+                \qq{is continuous at $t\ne0$}
+            \end{cases}
+        \end{align}
+        so we can use L'Hôpital's Rule. As $N \to \infty$,
+        \begin{align}
+            \left[ e^{-2\pi iNt} - e^{2\pi i(N+1)t} \right] \to 0 \implies (S_Nf)(0) \to (f(0) = 0)
+        \end{align}
+    \end{proof}
+\end{proof}

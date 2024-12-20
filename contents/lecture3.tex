@@ -1,0 +1,55 @@
+\section{Lecture 3}
+\subsection{Logarithms}
+Logarithm was the most significant technological invention of the 16th century. The inverse, exponentials, also hold for $u \in \mathbb{C}$
+\begin{align}
+    e^{x+y} &= e^x \cdot e^y\\
+    e^{it}\cdot e^{is} &= (\cos(t) + i\sin(t)) \cdot (\cos(s) + i\sin(s))\\
+    &= (\cos(t)\cos(s) - \sin(t)\sin(t)) + i(\sin(t)\cos(s) + \cos(t)\sin(s))\\
+    &= \cos(t+s) + i\sin(t+s)\\
+    &= e^{i(t+s)}
+\end{align}
+
+\subsection{Calculus of Periodic Functions}
+\begin{definition}
+    $\mathbb{L} = \{ z \in \mathbb{C} \mid |z| = 1 \} = \{ e^{2\pi it} \}$
+\end{definition}
+\begin{lemma}
+    The following types of functions are the same:
+    \begin{enumerate}
+        \item $f: \mathbb{R} \to \mathbb{C}$ that are periodic with period $1$
+        \item $F: \mathbb{L} \to \mathbb{C}$
+        \item $\Phi: [0, 1] \to \mathbb{C} \mid \Phi(0) = \Phi(1)$
+    \end{enumerate}
+\end{lemma}
+Use the following
+\begin{enumerate}
+    \item Given $f: \mathbb{R} \to \mathbb{C}$, periodic with period $1$, let $F(e^{2\pi it}) = f(t)$  
+    \item Given $f$,
+    \begin{align}
+        \Phi(x) := f(x)
+    \end{align}
+\end{enumerate}
+Then we can take derivatives and integrals of these functions.
+\subsubsection{Derivatives of functions $f: \mathbb{R} \to \mathbb{C}$}
+A function into $\mathbb{C}$ is effectively a pair of two functions, $f_\text{Re} (t): \mathbb{R} \to \mathbb{R}$ and $f_\text{Im} (t): \mathbb{R} \to \mathbb{R}$. Then, define
+\begin{align}
+    f'(t) &:= f'_\text{Re}(t) + i f'_\text{Im}(t)\\
+    \int f(t) \dd{t} &:= \int f'_\text{Re}(t)\dd{t} + i \int f'_\text{Im}(t)\dd{t}
+\end{align}
+We can use these to prove that the product rule, quotient rule, derivative rules, integration by parts, etc. all work the same for $\mathbb{C}$.\footnote{It would have been better to frame these explicitly as vectors, and differentiation/integration as linear transformations, but that did not happen.}
+
+\subsection{Vector Spaces}
+\begin{definition}
+    A real vector space is a set $V$ whose elements (vectors) $\vb{v}$, with two operations:
+    \begin{enumerate}
+        \item Closedness under addition $\vb{v_1} + \vb{v_2} \in V$
+        \item Closedness under scalar multiplication $c\vb{v} \in V$
+    \end{enumerate}
+    such that the other rules for vector spaces are satisfied\footnote{See Axler \textit{Linear Algebra Done Right}}.
+\end{definition}
+Niche but interesting examples
+\begin{enumerate}
+    \item $C_\mathbb{R}[0,1] := \{ f: [0,1] \to \mathbb{R} \mid f \text{ is continuous}\} := (3.3.1)$
+    \item $\{ f: [0,1] \to \mathbb{R} \mid f \text{ has finitely many discontinuities}\} := (3.3.2)$
+\end{enumerate}
+Note that $(3.3.1) \subseteq (3.3.2)$.

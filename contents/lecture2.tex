@@ -1,0 +1,130 @@
+\section{Lecture 2}
+\subsection{A Continued Rant on Complex Numbers}
+Think about $a+bi$ as the vector $\langle a, b \rangle$, giving complex numbers geometric significance. Hence, giving more motivation for (1.16). We can further write the inequalities
+\begin{align}
+    |\Im(z)|, |\Re(z)| \le |z| \le |\Im(z)| + |\Re(z)|
+\end{align}
+where $z \in \mathbb{C}$ per the triangle inequality.
+\subsubsection{Dividing Complex Numbers}
+We can divide complex numbers $z, w$ by multiplying the denominator by its conjugate:
+\begin{align}
+    \frac{z}{w} = \frac{z\overline{w}}{w \overline{w}}
+\end{align}
+as this will guarantee the denominator has no imaginary component per (1.15).
+
+\subsection{A Discussion on Sequence Convergence}
+What does it mean if a sequence of complex numbers converges?
+\begin{definition}
+    Let $z_1, z_2$ be a sequence of complex numbers, and let $w \in \mathbb{C}$. We can say that $\{ z_n \}$ converges to $w$, i.e.
+    \begin{align}
+        \lim_{n \to \infty}{z_n} = w
+    \end{align}
+    if
+    \begin{align}
+        \lim_{n \to \infty}{|z_n - w|} = 0
+    \end{align}
+\end{definition}
+\begin{lemma}
+\begin{align}
+    z_n \to w \iff
+    \begin{cases}
+        \Re(z_n) \to \Re(w)\\
+        \Im(z_n) \to \Im(w)
+    \end{cases}
+\end{align}
+\end{lemma}
+\begin{proof}
+    From the triangle inequality for complex numbers,
+    \begin{align}
+        |z-w| \le |z|+|w|
+    \end{align}
+    It follows that $|z+w| \le |z|+|w|$. For $z\in\mathbb{C}$,
+    \begin{align}
+        |z|=|\Re(z)+i\Im(z)| \leq |\Re(z)|+|\Im(z)|
+    \end{align}
+    which we can convince ourselves of by drawing the complex number $z$ as a triangle, and using geometry to define each of these terms. Then,
+    \begin{align}
+        |z_n-z_\infty| \leq |\Re(z_n-z_\infty)|+|\Im(z_n-z_\infty)|
+    \end{align}
+    For $\Rightarrow$, we want to show
+    \begin{align}
+        z_n \to w \Rightarrow \begin{cases}
+        \Re(z_n) \to \Re(w)\\
+        \Im(z_n) \to \Im(w)
+        \end{cases}
+    \end{align}
+    We can see this, as
+    \begin{align}
+        |z_n - w| &\le |\Re(z_n - w)| + |\Im(z_n - w)|\\
+        &\le |\Re(z_n) - \Re(w)| + |\Im(z_n) - \Im(w)| \to 0\\
+        &\Rightarrow |z_n - w| \to 0
+    \end{align}
+    noting that (2.11) is true via assumption. Then, for $\Leftarrow$ we want to show
+    \begin{align}
+        z_n \to w \Leftarrow \begin{cases}
+        \Re(z_n) \to \Re(w)\\
+        \Im(z_n) \to \Im(w)
+        \end{cases}
+    \end{align}
+    Then,
+    \begin{align}
+        |\Re(z_n)-\Re(z_\infty)| \Rightarrow 0 && |\Im(z_n)-\Im(z_\infty)| \Rightarrow 0
+    \end{align}
+    which each imply
+    \begin{align}
+        |\Re(z_n-z_\infty)| \Rightarrow 0 && |\Im(z_n-z_\infty)| \Rightarrow 0
+    \end{align}
+    meaning, as $n \to \infty$, $|z_n - w| \le 0 \Rightarrow z_n \to w$.
+\end{proof}
+
+\subsection{Series Convergence}
+\begin{definition}
+    Let $z_1, z_2, ... \in \mathbb{C}$, and let $w \in \mathbb{C}$. We say that $\sum_{n=1}^\infty z_n \to w$ if $z_1, z_1 + z_2, ... \to w$
+\end{definition}
+\begin{lemma}
+    Let $z_1, z_2, ...$ be a sequence of complex numbers. Assume that $\sum_{n=1}^\infty |z_n|$ converges, then $\sum_{n=1}^\infty z_n$ also converges. (This is called absolute convergence)
+\end{lemma}
+\begin{proof}
+    Let $s_n := z_1 + ... + z_n$. We want to show that the sequence $s_n$ converges. We can show that $s_n$ converges by showing that both $\Re(s_n)$ and $\Im(s_n)$ converge. We know that
+    \begin{align}
+        \sum_{i=1}^n |\Re(z_i)| \le \sum_{i=1}^n |z_i|
+    \end{align}
+    because $|\Re(z)| \le |z|$ for all complex numbers $z \in \mathbb{C}$. By assumption, the latter converges, so 
+    \begin{align}
+        \sum_{i=1}^n |\Re(z_i)|
+    \end{align}
+    also must converge, meaning
+    \begin{align}
+        |\Re(s_n)|
+    \end{align}
+    converges. By the same reasoning,
+    \begin{align}
+        |\Im(s_n)|
+    \end{align}
+    converges, so $\sum_{n=1}^\infty z_n$ also converges.\footnote{Note from future self: this is a strange proof, but it works?}
+\end{proof}
+
+\subsection{Exponentials}
+What is the meaning of $e^x$, or even $e^i$? We know that $e^x$ is a series
+\begin{align}
+    e^x = 1 + x + x^2/2 + x^3/6 + ... + x^n/n!
+\end{align}
+\begin{definition}
+    For a complex number $z \in \mathbb{C}$, let $e^z$ be defined as
+    \begin{align}
+        e^z := \sum_{n=0}^\infty \frac{z^n}{n!}
+    \end{align}
+\end{definition}
+This series converges because by Lemma 2.4, the sequence absolutely converges. We can look at
+\begin{align}
+    \sum |\frac{z^n}{n!}| = \sum \frac{|z^n|}{|n!|} = \sum \frac{|z|^n}{n!} = e^{|z|} < \infty
+\end{align}
+In general, suppose $t \in \mathbb{R}$. Then,
+\begin{align}
+    e^{it} = \sum_{n=0}^\infty \frac{(it)^n}{n!} = \text{the Taylor expansion goes here}
+\end{align}
+eventually we find
+\begin{align}
+    e^{it} = \cos(t) + i\sin(t)
+\end{align}
+by rearranging the Taylor expansion into even terms and odd terms.\footnote{Again, this seems like an awfully hand-wavy way to prove this. There is a better way to do the convergence proof, but this course did not do it.}

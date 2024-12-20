@@ -1,0 +1,164 @@
+\section{Lecture 20}
+\subsection{EVEN MORE PROPERTIES}
+\begin{enumerate}
+    \item[9.] \textbf{Inverse of a Fourier Transform}.
+    \begin{definition}
+        If $f \in V$ then, for every $x$,
+        \begin{align}
+            \boxed{f(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \hat{f}(\xi) e^{ix\xi} \dd{\xi}}
+        \end{align}
+    \end{definition}
+    \begin{proof}
+        See Section 20.3.1.
+    \end{proof}
+    \item[10.] Fourier Transform of a Fourier Transform
+    \begin{align}
+        \hat{\hat{f}}(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \hat{f}(\xi) e^{-i\xi x} \dd{\xi} = f(-x)
+    \end{align}
+    gives a flipped function.
+    \begin{proof}
+        Trivial using Property 9.
+    \end{proof}
+\end{enumerate}
+
+\subsection{Poisson Summation Formula}
+Suppose $f : \mathbb{R} \to \mathbb{C}$ satisfies that there is a constant $c$ such that
+\begin{align}
+    \begin{cases}
+        \abs{f(x)} < c/x^2\\
+        \abs{f'(x)} < c/x^2
+    \end{cases}
+\end{align}
+Then,
+\begin{align}
+    \sum_n f(n) = \sqrt{2\pi} \sum_n \hat{f}(2\pi n)
+\end{align}
+\begin{proof}
+    Let 
+    \begin{align}
+        g(x) = \sum_n f(x+n)
+    \end{align}
+    By (20.3), this sum converges. By (20.4),
+    \begin{align}
+        g'(x) = \sum_n f'(x+n)
+    \end{align}
+    also converges, so $g$ is differentiable. Note that $g(x)$ is periodic, as
+    \begin{align}
+        \sum_{n \in \mathbb{Z}} f(n) = \sum_{n \in \mathbb{Z}} f(n-1)
+    \end{align}
+    due to the cardinality of $\mathbb{Z}$. Since $g$ is periodic, we can compute the Fourier coefficients of $g$:
+    \begin{align}
+        a_n(g) &= \int_0^1 g(t) e^{-2\pi in t} \dd{t}\\
+        &= \int_0^1 \sum_m f(t+m) e^{-2\pi in t} \dd{t}\\
+        &= \sum_m \int_0^1 f(t+m) e^{-2\pi in (t+m)} \dd{t}\\
+        &= \sum_m \int_m^{m+1} f(s) e^{-i 2\pi n s} \dd{t}\\
+        &= \int_{-\infty}^\infty f(s) e^{-i 2\pi n s} \dd{t}\\
+        &= \sqrt{2\pi} \hat{f}(2\pi n)
+    \end{align}
+    Then, the Fourier series of $g$ converges to $g$.
+    \begin{align}
+        \sum_m f(m) = g(0) = \sum_n a_n(g) = \sqrt{2\pi} \cdot \sum_n \hat{f}(2\pi n)
+    \end{align}
+    A stronger claim uses the functions, in order
+    \begin{align}
+        f(x) \to f(ax) \to f(ax+b)
+    \end{align}
+    using translation and dilation. To do this, define
+    \begin{align}
+        f(x) &= f(x)\\
+        g(x) &= f(ax)\\
+        h(x) &= f(ax+b) = g(x+b/a)
+    \end{align}
+    Then,
+    \begin{align}
+        g(x) &= f(x+a)\\
+        \hat{g}(\xi) &= \dfrac{1}{\sqrt{2\pi}} \int g(x) e^{-ix\xi} \dd{\xi}\\
+        &= \dfrac{1}{a}\hat{f}(\xi/a)\\
+        \hat{h}(\xi) &= \hat{g}(\xi) \cdot e^{i\xi b/a} = \boxed{
+        \dfrac{1}{a}\hat{f}(\xi/a)e^{i\xi b/a}
+        }
+    \end{align}
+    So,
+    \begin{lemma}
+        A stronger version of the Poisson summation formula is
+        \begin{align}
+            \sum_n f(an+b) = \dfrac{\sqrt{2\pi}}{a} \sum \hat{f}\left( \dfrac{2\pi n}{a} \right) \cdot e^{\frac{2\pi n b}{a}i}
+        \end{align}
+    \end{lemma}
+\end{proof}
+
+\subsection{Three Applications of the Fish Formula}
+\subsubsection{Proof of Fourier Inversion}
+To prove the inverse Fourier transform, set $b$ and take $a \to \infty$.
+\begin{lemma}
+    If $f \in V$ then, for every $x$,
+    \begin{align}
+        \boxed{f(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \hat{f}(\xi) e^{ix\xi} \dd{\xi}}
+    \end{align}
+\end{lemma}
+\begin{proof}
+    The left hand side of (20.23) can be expanded into
+    \begin{align}
+        \sum_{n=0} f(an+b) + \sum_{n>0} f(an+b) + \sum_{n<0} f(an+b)
+    \end{align}
+    But, as $a \to\infty$, summing over positive yields
+    \begin{align}
+        \sum_n \abs{f(an+b)} \le \sum_n c/(an+b)^2 \le \sum c/a^2n^2 \le \dfrac{c\pi^2}{6a^2}
+    \end{align}
+    and without loss of generality the same can be applied to negative numbers. This thus approaches $0$ as $a \to \infty$, so $f(\cdots)$ vanishes, so (20.25) equals
+    \begin{align}
+        f(0 + b) = \boxed{f(b)}
+    \end{align}
+    Expanding the right hand side yields, if we let $N := a$
+    \begin{align}
+        \sqrt{2\pi} \cdot \dfrac{1}{N} \cdot \sum_n \hat{f}(2\pi n/N) \cdot e^{2\pi i (\frac{n}{N}) b}
+    \end{align}
+    But, that sum is a Riemann sum for
+    \begin{align}
+        \hat{f}(2\pi x) \cdot e^{2\pi i x b}
+    \end{align}
+    so we can simplify (20.28) into
+    \begin{align}
+        \sqrt{2\pi} \int_{-\infty}^\infty f(2\pi x) e^{2\pi ix b} \dd{x}
+    \end{align}
+    Using $s = 2\pi x$, and equating with (20.27),
+    \begin{align}
+        f(b) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty f(s) e^{isb} \dd{s}
+    \end{align}
+    which is indeed a proof of Lemma 21.3, just with slightly different symbols.
+\end{proof}
+
+\subsubsection{Taking $a \to 0$}
+\begin{lemma}
+    If $f$ is $q$ times differentiable, then
+    \begin{align}
+        \abs{\dfrac{1}{N}\sum f(n/N) - \int f(t) \dd{t}} \le \dfrac{D}{N^q}
+    \end{align}
+\end{lemma}
+\begin{proof}
+    Use $a = 1/N$ and $b = 0$. Then
+    \begin{align}
+        \sum f(an+b) = \sum f(n/N) &= N\sqrt{2\pi} \sum \hat{f}(2\pi n N) e^{2\pi nNi}\\
+        &= N\sqrt{2\pi} \sum \hat{f}(2\pi n N)
+    \end{align}
+    Dividing by $N$,
+    \begin{align}
+        \dfrac{1}{N} \sum f(n/N) = \sqrt{2\pi} \sum \hat{f}(2\pi n N)
+    \end{align}
+    At $n=0$,
+    \begin{align}
+        \hat{f}(0) = \dfrac{1}{\sqrt{2\pi}} \int f(x) \dd{x}
+    \end{align}
+    so
+    \begin{align}
+        \abs{\dfrac{1}{N}\sum f(n/N) - \int f(t) \dd{t}} &\le \sqrt{2\pi} \cdot \sum_{n \ne 0} \hat{f}(2\pi n N)\\
+        &\le \dfrac{C}{N^q (2\pi)^q} \cdot \sum \dfrac{1}{n^q}\\
+        &\le \dfrac{D}{N^q} & \sum \dfrac{1}{n^q} < \infty
+    \end{align}
+    because since $f$ is differentiable $q$ times, then
+    \begin{align}
+        \abs{\widehat{f^{(q)}}(\xi)} &\le C\\
+        \implies \abs{\xi^{q} \cdot \hat{f}(\xi)} &\le C\\
+        \implies \hat{f}(\xi) &\le \dfrac{C}{\abs{\xi}^{q}}
+    \end{align}
+\end{proof}

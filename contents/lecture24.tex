@@ -1,0 +1,69 @@
+\section{Lecture 24}
+\subsection{Some more on the $n$-D Fourier Transform}
+Recall
+\begin{align}
+    \widehat{f}(\xi, \eta) = \dfrac{1}{2\pi} \iint_{\mathbb{R}^2} f(x, y) e^{-i(\xi x + \eta y)} \dd{x}\dd{y}
+\end{align}
+Note that
+\begin{align}
+    \xi x + \eta y = \mqty[\xi\\\eta] \cdot \mqty[x\\y]
+\end{align}
+So, a more general definition is
+\begin{definition}
+    A Fourier transform of some function can be written as
+    \begin{align}
+        \hat{f}(\vb{v}) = \dfrac{1}{(2\pi)^{n/2}} \int_{\mathbb{R}^n} f(\vb{x}) e^{-i(\vb{x} \cdot \vb{v})} \dd{\vb{x}}
+    \end{align}
+\end{definition}
+
+\begin{definition}
+    (Inverse Fourier Transform)
+    \begin{align}
+        f(\vb{x}) = \dfrac{1}{(2\pi)^{n/2}} \int_{\mathbb{R}^n} \hat{f}(\vb{v}) \cdot e^{i(\vb{x} \cdot \vb{v})} \dd{\vb{v}}
+    \end{align}
+\end{definition}
+\begin{proposition}
+    If $f(x,y) = g(x)h(y)$, then
+    \begin{align}
+        \hat{f}(\xi, \eta) &= \dfrac{1}{2\pi} \iint f(x,y) e^{-i(\xi x + \eta y)} \dd{x}\dd{y}\\
+        &= \dfrac{1}{2\pi} \iint g(x)e^{ix\xi} \cdot h(y) e^{iy\eta} \dd{x}\dd{y}\\
+        &= \dfrac{1}{2\pi} \int g(x)e^{ix\xi} \dd{x} \cdot \int h(y) e^{iy\eta} \dd{y}\\
+        &= \hat{g}(\xi) \cdot \hat{h}(\eta)
+    \end{align}
+\end{proposition}
+So, we can apply this to a Gaussian distribution; we get
+\begin{align}
+    \mathcal{F}\left[ \exp(-\dfrac{x^2+y^2}{2}) \right] = \exp[-\dfrac{\xi^2+\eta^2}{2}]
+\end{align}
+
+\subsection{Pulses}
+Let
+\begin{align}
+    1_{[-1/2, 1/2] \times [-1/2, 1/2]}(x,y) = \begin{cases}
+        1 & (x,y) \in [-1/2, 1/2] \times [-1/2, 1/2]\\
+        0 & \text{else}
+    \end{cases}
+\end{align}
+This is actually just the multiplication of one-dimensional square pulses, which we know the FT of. So, the FT of this function equals the product, which is
+\begin{align}
+    \text{sinc}(x) \cdot \text{sinc}(y)
+\end{align}
+
+\subsection{Radial Invariance}
+If $f(x,y)$ is radial, then $\hat{f}(\xi, \eta)$ is also radial. To compute it, we might as well just compute it at $(r, 0)$, as all of the other directions are just rotations of this. Note that since $f(x, y)$ is radial, it is some function
+\begin{align}
+    \phi(\sqrt{x^2 + y^2})
+\end{align}
+Using the 2D FT,
+\begin{align}
+    2\pi \hat{f}(r, 0) = \iint f(x, y) e^{-irx} \dd{x}\dd{y}
+\end{align}
+Then, change to polar coordinates
+\begin{align}
+    \iint \phi(r) e^{-ir^2\cos(\theta)} r\dd{r}\dd{\theta}
+\end{align}
+One of these integrals, nobody knows the solution to. So, give it a name
+\begin{align}
+    \int_0^{2\pi} e^{-ix\cos(\theta)} \dd{\theta} = 0\text{-th Bessel Function $J_0(x)$}
+\end{align}
+Now, this is the end of this document. There was a small amount of content covered after this, but it does not fit well with the themes of this course, and I also did not take notes for them, as they felt very tangential.

@@ -1,0 +1,91 @@
+\section{Lecture 23}
+\subsection{The Heat Equation, Revisited}
+Recall
+\begin{align}
+    \pdv{u}{t} = \laplacian u
+\end{align}
+In one dimension, this is
+\begin{align}
+    \pdv{u}{t} = \pdv[2]{u}{x}
+\end{align}
+Let $v(t, \xi)$ be the Fourier transform of some solution $u(t, x)$ in the x-direection. Then, taking the FT of both sides,
+\begin{align}
+    (23.2) \implies \pdv{v(t, \xi)}{t} &= (-i\xi)^2 v(t, \xi)\\
+    &= -\xi^2 v(t, \xi)
+\end{align}
+This makes the PDE into an ODE, specifically
+\begin{align}
+    \dv{v}{t} = -\xi^2 v
+\end{align}
+which has the solution
+\begin{align}
+    v(t, \xi) = e^{-\xi^2t} \cdot v(0, \xi) = e^{-\xi^2 t} \cdot \widehat{h(x)}(\xi)
+\end{align}
+To rewrite this, recall
+\begin{align}
+    \mathcal{F}\left[ e^{-x^2/2} \right] = e^{-\xi^2/2}
+\end{align}
+Dividing the function by a factor of $a$ yields, by previously proven properties
+\begin{align}
+    \mathcal{F}\left[ e^{-a^2x^2/2} \right] = \dfrac{1}{a} e^{-\xi^2/2a^2}
+\end{align}
+Since we want this to equal $e^{-\xi^2 t}$, we can use
+\begin{align}
+    a = \dfrac{1}{\sqrt{2t}}
+\end{align}
+which would yield
+\begin{align}
+    \mathcal{F}\left[ e^{-x^2/4t} \right] = \sqrt{2t}e^{-\lambda^2t}
+\end{align}
+So, (23.6) becomes
+\begin{align}
+    (23.6) &= \dfrac{1}{\sqrt{2t}} \widehat{e^{-x^2}/4t} \cdot \widehat{h(x)}\\
+    &= \dfrac{1}{2\sqrt{\pi t}} \widehat{e^{-x^2/4t} * h(x)} & \text{prev. properties}
+\end{align}
+Thus, taking $\mathcal{F}^{-1}$,
+\begin{align}
+    u(t, x) = \underbracket{\left[ \dfrac{1}{2\sqrt{\pi t}} e^{-x^2/4t} \right]}_{\kappa_t\text{ Heat Kernel}} * h(x)
+\end{align}
+So, the temperature at some point at some time is some sort of weighted average of initial temperatures.
+\begin{enumerate}
+    \item $t \to t_0$ means $\kappa_t$ ``goes to zero'' very fast, which means the weights are only significant around $t_0$.
+    \item $t \to \infty$ means $\kappa_t$ is effectively constant, making the temperature into the average temperature at all points.
+\end{enumerate}
+But, this model would imply that at some $t = 10^{-50} \text{ s}$, $\Delta t \ne 0$ which is physically impossible due to speed constraints. So, this is still an oversimplification of reality.
+
+\subsection{Multidimensional Functions}
+Multidimensional functions are an upgrade from the status quo of living along a single dimension. Using 2D as an example, a wave might look like
+\begin{align}
+    f(x, y) = e^{ix}
+\end{align}
+which is a sine wave alone the $[1,0]$ unit vector. In general,
+\begin{align}
+    f_{[a,b]} = e^{i(ax+by)}
+\end{align}
+We claim:
+\begin{theorem}
+    Every reasonable function can be some infinite sum of these waves described in (23.15).
+\end{theorem}
+To prove this, define \textbf{The Multidimensional Fourier Transform}:
+\begin{definition}
+    (The Multidimensional Fourier Transform) Let $f: \mathbb{R}^2 \to \mathbb{C}$ be some function. Then, the 2D Fourier transform of $f$ is
+    \begin{align}
+        \widehat{f}(\xi, \eta) = \dfrac{1}{2\pi} \iint_{\mathbb{R}^2} f(x, y) e^{-i(\xi x + \eta y)} \dd{x}\dd{y}
+    \end{align}
+    So, in general,
+    \begin{align}
+        \widehat{f}(a_1, \cdots, a_n) = \dfrac{1}{(2\pi)^{n/2}} \int_{\mathbb{R}^n} f(x_1, \cdots, x_n) e^{-i(\sum_i a_i x_i)} \dd{x_1}\cdots\dd{x_n}
+    \end{align}
+\end{definition}
+
+\subsection{Properties of a Multidimensional Fourier Transform}
+In multiple dimensions, properties still hold
+\begin{enumerate}
+    \item $\delta_x \widehat{f(x,y)} = -i\xi \hat{f}(\xi, \eta)$
+    \item $\widehat{f*g} \propto \hat{f} \cdot \hat{g}$
+\end{enumerate}
+Wherever there is a $\sqrt{2\pi}$, it now must be taken to the $n$-th power where $n$ is the dimension of the field being transformed. Finally,
+\begin{align}
+    \norm{f} = \norm{\hat{f}}
+\end{align}
+also still holds.

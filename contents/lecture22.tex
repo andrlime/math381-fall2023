@@ -1,0 +1,115 @@
+\section{Lecture 22}
+Use the function
+\begin{align}
+    \sqrt{2\pi} \cdot \widehat{e^{-\abs{x}}}(\xi) &= \int_{-\infty}^\infty e^{-\abs{x}} e^{-ix\xi} \dd{x}\\
+    &= \int_{-\infty}^0 e^{x} e^{-ix\xi} \dd{x} + \int_{0}^\infty e^{-x} e^{-ix\xi} \dd{x}\\
+    &= \int_{-\infty}^0 e^{x(1-i\xi)} \dd{x} + \int_{0}^\infty e^{x(-1-i\xi)} \dd{x}\\
+    &= \eval(\dfrac{e^{x(1-i\xi)}}{1-i\xi}|_{-\infty}^0 + \eval(\dfrac{e^{x(-1-i\xi)}}{-1-i\xi}|_0^\infty = \boxed{\dfrac{1}{1-i\xi} + \dfrac{1}{1+i\xi}}
+\end{align}
+Simplify that result to get
+\begin{align}
+    \dfrac{1}{1-i\xi} + \dfrac{1}{1+i\xi} &= \boxed{\dfrac{2}{1+\xi^2}}
+\end{align}
+So,
+\begin{align}
+    \widehat{e^{-\abs{x}}}(\xi) = \sqrt{\dfrac{2}{\pi}} \dfrac{1}{1+\xi^2}
+\end{align}
+
+\subsection{Going Back to Differential Equations}
+Recall
+\begin{align}
+    \widehat{f'(x)}(\xi) = -i\xi \hat{f}(\xi)
+\end{align}
+Conversely, take the derivative of a Fourier transform
+\begin{align}
+    \dv{\xi} \hat{f}(\xi) &= \dfrac{1}{\sqrt{2\pi}} \dv{\xi} \int f(x) e^{-ix\xi} \dd{x}\\
+    &= \dfrac{1}{\sqrt{2\pi}} \cdot \int f(x) \cdot (-ix) e^{-ix\xi} \dd{x}\\
+    &= \widehat{-ix f(x)}(\xi)
+\end{align}
+Use this in solving differential equations. Suppose
+\begin{align}
+    -f''(x) + f(x) = h(x)
+\end{align}
+Take the Fourier transform of both sides
+\begin{align}
+    -(-i\xi)^2 \hat{f}(\xi) + \hat{f}(\xi) = \hat{h}(\xi)
+\end{align}
+so
+\begin{align}
+    (1 + \xi^2) \hat{f}(\xi) = \hat{h}(\xi)
+\end{align}
+the solution to this is
+\begin{align}
+    \hat{f}(\xi) = \dfrac{1}{1+\xi^2} \cdot \hat{h}(\xi)
+\end{align}
+But, use (22.6). This becomes
+\begin{align}
+    \hat{f}(\xi) &= \widehat{\sqrt{\frac{\pi}{2}} e^{-\abs{x}}} \cdot \hat{h}(\xi) \cdot \sqrt{2\pi} \cdot \dfrac{1}{\sqrt{2\pi}}\\
+    &= \dfrac{1}{2} \left[ \sqrt{2\pi} \hat{h}(\xi) \cdot \widehat{e^{-\abs{x}}} \right]\\
+    &= \dfrac{1}{2} \left[ \widehat{h(x) * e^{-\abs{x}}}(\xi) \right]
+\end{align}
+So,
+\begin{align}
+    f(x) &= \dfrac{1}{2} \left[ h(x) * e^{-\abs{x}} \right]\\
+    &= \dfrac{1}{2} \int_{-\infty}^\infty h(t) \cdot e^{-\abs{x-t}} \dd{t}
+\end{align}
+
+\subsection{Airy Equation}
+\begin{align}
+    f''(x) - xf(x) = 0
+\end{align}
+Take the Fourier transform and get
+\begin{align}
+    (-i\xi)^2 \hat{f}(\xi) - \dfrac{1}{i}\dv{\xi} \hat{f}(\xi) = 0
+\end{align}
+which becomes
+\begin{align}
+    \dfrac{1}{i}\dv{\xi} \hat{f}(\xi) = -\xi^2 \hat{f}(\xi)
+\end{align}
+or, if $g = \hat{f}$,
+\begin{align}
+    g'(\xi) = i\xi^2 g(\xi)
+\end{align}
+Then, rearranging, we get
+\begin{align}
+    \dv{\xi} \log{\hat{f}(\xi)} = -i\xi^2 \implies \log{\hat{f}(\xi)} = -\dfrac{i\xi^3}{3} + C
+\end{align}
+This implies
+\begin{align}
+    \hat{f}(\xi) = D \cdot \exp\left[ -\frac{i\xi^3}{3} \right]
+\end{align}
+So, taking the inverse FT,
+\begin{align}
+    f(x) &= \dfrac{D}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{-\frac{i\xi^3}{3} + ix\xi} \dd{\xi}\\
+    &= F \int_{-\infty}^\infty e^{-i(\frac{\xi^3}{3} + x\xi)} \dd{\xi}
+\end{align}
+
+\subsection{A Third Example}
+Start with the function
+\begin{align}
+    f(x) = e^{-x^2/2}
+\end{align}
+This function satisfies a differential equation
+\begin{align}
+    f'(x) + xf(x) = 0
+\end{align}
+Conversely,
+\begin{align}
+    g \text{ satisfies (22.29)} \implies g = Cf
+\end{align}
+Take the FT of (22.29) and get
+\begin{align}
+    (-i\xi) \hat{f}(\xi) - i \dv{\xi} \hat{f}(\xi) = 0
+\end{align}
+Rearranging, $\hat{f}$ also satisfies the differential equation in (22.29) which implies
+\begin{align}
+    \hat{f} = Cf
+\end{align}
+What is this constant? By Bessel\footnote{man},
+\begin{align}
+    \norm{e^{-x^2/2}} = \norm{C \cdot e^{-\xi^2/2}} = \abs{C} \cdot \norm{e^{-\xi^2/2}} \implies C = \pm1
+\end{align}
+But $C = 1$ because the integrand is positive. This also implies
+\begin{align}
+    \int_{-\infty}^\infty e^{-x^2/2} \dd{x} = \sqrt{2\pi}
+\end{align}

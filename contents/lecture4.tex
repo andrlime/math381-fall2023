@@ -1,0 +1,54 @@
+\section{Lecture 4}
+\subsection{More on Derivatives and Integrals}
+Derivatives represent position, velocity, acceleration, jerk, etc.
+\begin{align}
+    \dv{}{t} \left(e^{it} \right) = ie^{it}
+\end{align}
+This is the velocity of the trajectory and multiplying by $i$ induces a $90^\circ$ rotation. Integrals then might represent the center of mass, or more generally, a complete sum which can be used for averages.
+\begin{lemma}
+    \begin{align}
+        \int_0^{2\pi} e^{int}e^{-imt} \dd{t} = \begin{cases}
+            0 \implies n\ne m\\
+            2\pi \text{ otherwise}
+        \end{cases}
+    \end{align}
+\end{lemma}
+
+\subsection{Inner Product}
+The dot product in $\mathbb{R}^n$ is denoted by
+\begin{align}
+    (x_1, x_2, ..., x_n) \cdot (y_1, y_2, ..., y_n) = \sum_{i=1}^n x_iy_i
+\end{align}
+For functions, this does not quite work, as there are infinitely many terms; instead, an integral is a better tool to represent the inner product.
+\begin{definition}
+    The standard inner product on $C_\mathbb{R}[0,1]$ is the function that takes two vectors $f, g \in C_\mathbb{R}[0,1]$ and outputs the number
+    \begin{align}
+        \langle f, g \rangle := \int_0^1 f(x)g(x) \dd{x}
+    \end{align}
+\end{definition}
+This is the ``infinite dimensional version of the dot product'' and satisfies many of the same properties:
+\subsubsection{Properties of a (Real) Inner Product}
+\begin{definition}
+    Any real inner product satisfies:
+    \begin{enumerate}
+        \item $\langle f, g \rangle = \langle g, f \rangle$
+        \item $\langle \lambda f, g \rangle = \lambda \langle f, g \rangle$
+        \item $\langle f + g, h \rangle = \langle f, h \rangle + \langle g, h \rangle$
+        \item $\langle f, f \rangle \ge 0$
+        \begin{enumerate}
+            \item $\langle f, f \rangle = 0 \iff f = 0$
+        \end{enumerate}
+    \end{enumerate}
+\end{definition}
+\textbf{Any function that satisfies these four properties is an inner product.} With these we can also talk about length and angle.
+\begin{definition}
+    If $f, g \in V$\footnote{a vector space}, define the norm of $f$ as
+    \begin{align}
+        \norm{f} := \sqrt{\langle f, f \rangle}
+     \end{align}
+     Then, the distance between $f$ and $g$ is $\norm{f-g}$ and the angle between them is the number $\gamma$ such that
+     \begin{align}
+         \langle f, g \rangle = \norm{f} \cdot \norm{g} \cdot \cos(\gamma)
+     \end{align}
+     Finally, if the angle between $f$ and $g$ is $\pi/2$ radians, then we say that $f \perp g$ (the inner product must be zero).
+\end{definition}

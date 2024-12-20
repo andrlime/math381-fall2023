@@ -1,0 +1,152 @@
+\section{Lecture 5}
+Complex functions/numbers form a complex vector space, such as $\mathbb{C}^2$. 
+\subsection{Complex Inner Products}
+Inner products are weirder in the complex case, as
+\begin{align}
+    \langle if, if \rangle = -1 \langle f, f \rangle
+\end{align}
+What changes is that
+\begin{align}
+    \langle f, g \rangle = \langle g, f \rangle
+\end{align}
+is no longer true.
+\begin{definition}
+    Let $V$ be a complex vector space. An inner product on $V$ is a function that takes two vectors $\vb{u}, \vb{v} \in V$ and outputs $\langle v, u \rangle \in \mathbb{C}$.
+\end{definition}
+\subsection{Properties of a (Complex) Inner Product}
+\begin{definition}
+    Any complex inner product satisfies:
+    \begin{enumerate}
+        \item $\langle u, v \rangle = \overline{\langle v, u \rangle}$
+        \item $\langle \lambda u, v \rangle = \lambda \langle u, v \rangle$
+        \item $\langle u + v, w \rangle = \langle u, w \rangle + \langle v, w \rangle$
+        \item $\langle u, u \rangle \ge 0$
+        \begin{enumerate}
+            \item $\langle u, u \rangle = 0 \iff u = 0$
+        \end{enumerate}
+    \end{enumerate}
+\end{definition}
+Note that
+\begin{align}
+    \langle v, \lambda w \rangle \ne \lambda \langle v, w \rangle
+\end{align}
+but we can combine rules to find
+\begin{align}
+    \langle v, \lambda w \rangle &= \overline{
+        \langle \lambda w, v \rangle
+    }\\
+    &= ... = \overline{\lambda} \cdot \langle v, w \rangle
+\end{align}
+Then, as an example
+\begin{align}
+    C[0,1] := \{ f: [0,1] \to \mathbb{C} \mid f \text{ continuous} \}
+\end{align}
+This is a complex vector space.
+\begin{definition}
+    The standard inner product on $C[0,1]$ is
+    \begin{align}
+        \langle f, g \rangle = \int_0^1 \left[ f(t) \overline{g(t)} \right] \dd{t}
+    \end{align}
+\end{definition}
+
+\subsection{Fourier Motivation}
+Given
+\begin{align}
+    f(t) = \alpha_0 e^{\beta_0 i t} + \alpha_1 e^{\beta_1 i t} + \alpha_2 e^{\beta_2 i t} + ...
+\end{align}
+How can we find $\alpha$? Using this integral
+\begin{align}
+    \int_0^1 \left[ e^{2\pi int} \cdot e^{-2\pi imt} \right] \dd{t} = \begin{cases}
+        1 & n = m\\
+        0 & n \ne m
+    \end{cases}
+\end{align}
+This is just an inner product using (5.7):
+\begin{align}
+    \langle e^{2\pi i n t}, e^{2\pi i m t} \rangle
+\end{align}
+We can quite easily find what $\alpha$ are:
+\begin{align}
+    \langle f(t), e^{\beta_1 i t} \rangle = ... = \alpha_1
+\end{align}
+via linearity of the inner product. Using (5.9), all terms cancel except that for $\alpha_1$. So, taking the integral gives that constant.
+\begin{definition}
+    A set $\{ \vb{v_i} \}$ of vectors in a vector space with an inner product is orthonormal\footnote{orthogonal and normalized} if
+    \begin{enumerate}
+        \item Orthogonal $\langle \vb{v_i}, \vb{v_j} \rangle = 0 \iff i \ne j$
+        \item Normalized $\langle \vb{v_i}, \vb{v_i} \rangle = 1$
+    \end{enumerate}
+\end{definition}
+Then, it follows that
+\begin{lemma}
+    If $\vb{v_1}, ... \vb{v_n}$ are orthonormal and $\vb{v} = \alpha_1\vb{v_1} + ... + \alpha_n\vb{v_n}$ then
+    \begin{align}
+        \alpha_i = \langle \vb{v}, \vb{v_i} \rangle
+    \end{align}
+\end{lemma}
+In general, there are two definitions to take away from this
+\begin{definition}
+    \begin{enumerate}
+        \item If $\{ \vb{v_i} \}$ are orthonormal, $\vb{v} \in V$, the numbers $\langle \vb{v}, \vb{v_i} \rangle$ are called the generalized Fourier coefficients of $\vb{v}$.
+        \item If $\{ \vb{v_1}, ... \vb{v_n}  \}$ are orthonormal, $v \in V$, the vector
+        \begin{align}
+            P_{\{ \vb{v_1}, ... \vb{v_n} \}} \vb{v} := \langle \vb{v}, \vb{v_1} \rangle \vb{v_1} + ... + \langle \vb{v}, \vb{v_n} \rangle \vb{v_n}
+        \end{align}
+        is called the projection of $v$.
+    \end{enumerate}
+\end{definition}
+But what if $v$ is not an element of $V$?
+\begin{lemma}
+    Assume $\{ v_1,...,v_n \}$ are orthonormal, $v \in V$. Then:
+    \begin{enumerate}
+        \item $\vb{v} - P\vb{v}$ is orthogonal to any linear combination of $\vb{v_1}, ... \vb{v_n}$
+        \item For every $\vb{w} \in W$, $\norm{\vb{u} - \vb{w}}^2 = \norm{\vb{u} - P_W\vb{u}}^2 + \norm{P_W \vb{u} - \vb{w}}^2$
+        \item Among all vectors that are linear combinations of $\vb{v_1}, ... \vb{v_n}$, $P\vb{v}$ is the closest to $\vb{v}$ 
+        \item Let $\{ \vb{v_i} \}$ be orthonormal vectors in an inner product space $V$, and let $\vb{v} \in V$. Then,
+        \begin{align}
+            \sum \abs{\langle \vb{v}, \vb{e_i} \rangle}^2 \le \norm{\vb{v}}^2
+        \end{align}
+    \end{enumerate}
+\end{lemma}
+\begin{enumerate}
+    \item \begin{proof}
+        Suppose $\vb{w}$ is some linear combination of $\{ v_1,...,v_n \}$. Then,
+        \begin{align}
+            \langle P\vb{v}, \vb{v_i} \rangle
+            &= 
+                \left\langle
+                    \left[\langle \vb{v}, \vb{v_1} \rangle \vb{v_1} + ... + \langle \vb{v}, \vb{v_n} \rangle \vb{v_n}\right], \vb{v_i} 
+                \right\rangle\\
+            &= \left\langle \langle \vb{v}, \vb{v_1} \rangle \vb{v_1}, \vb{v_i} \right\rangle + ... + \left\langle \langle \vb{v}, \vb{v_n} \rangle \vb{v_n}, \vb{v_i} \right\rangle\\
+            &= \left\langle \langle \vb{v}, \vb{v_i} \rangle \vb{v_i}, \vb{v_i} \right\rangle\\
+            &= \langle \vb{v}, \vb{v_i} \rangle \left\langle \vb{v_i}, \vb{v_i} \right\rangle = \langle \vb{v}, \vb{v_i} \rangle && \left\langle \vb{v_i}, \vb{v_i} \right\rangle = 1\\
+            \implies& \langle P\vb{v} - \vb{v}, \vb{w} \rangle = 0
+        \end{align}
+    \end{proof}
+    \item \begin{proof}
+        \begin{align}
+            \norm{\vb{u} - \vb{w}}^2 &= \norm{(\vb{u} - P_W\vb{u}) + (P_W\vb{u} - \vb{w})}^2\\
+            &= \norm{\vb{u} - P_W\vb{u}}^2 + \norm{P_W\vb{u} - \vb{w}}^2 && \text{(5.19) $\implies$ orth.}
+        \end{align}
+    \end{proof}
+    \item \begin{proof}
+        Suppose $\vb{w}$ is a linear combination of $\{ \vb{v_1},...,\vb{v_n} \}$. WTS $\norm{\vb{w} - \vb{v}} > \norm{P\vb{v} - \vb{v}}$.
+        \begin{align}
+            \norm{\vb{w}-\vb{v}}^2 &= \norm{(\vb{w}-P\vb{v}) + (P\vb{v} - \vb{v})}^2 && \text{use orth.}\\
+            &= \norm{\vb{w}-P\vb{v}}^2 + \norm{P\vb{v} - \vb{v}}^2 \ge \norm{P\vb{v} - \vb{v}}^2 && \text{term 1 $\ge$ 0}
+        \end{align}
+    \end{proof}
+    \item \begin{proof}
+        \begin{align}
+            \norm{\vb{u}}^2 &= \norm{\vb{u} - P_W\vb{u}}^2 + \norm{P_W\vb{u}}^2 && (5.21)\\
+            &\ge \norm{P_W\vb{u}}^2 = \norm{\langle \vb{u}, \vb{v_1} \rangle \vb{v_1} + ... + \langle \vb{u}, \vb{v_n} \rangle \vb{v_n}}^2 && \ge 0\\
+            &\ge \norm{\langle \vb{u}, \vb{v_1} \rangle \vb{v_1}}^2 + \norm{\langle \vb{u}, \vb{v_2} \rangle \vb{v_2}}^2 + ... + \norm{\langle \vb{u}, \vb{v_n} \rangle \vb{v_n}}^2 && \text{orth.}\\
+            &\ge \abs{\langle \vb{u}, \vb{v_1} \rangle}^2 + ... + \abs{\langle \vb{u}, \vb{v_2} \rangle}^2 + ... + \abs{\langle \vb{u}, \vb{v_n} \rangle}^2 && \text{norm.}\\
+            & \ge \sum \abs{\langle \vb{v}, \vb{e_i} \rangle}^2
+        \end{align}
+        So flip the inequality to complete the proof
+        \begin{align}
+            \sum \abs{\langle \vb{v}, \vb{e_i} \rangle}^2 \le \norm{\vb{u}}^2
+        \end{align}
+    \end{proof}
+\end{enumerate}
